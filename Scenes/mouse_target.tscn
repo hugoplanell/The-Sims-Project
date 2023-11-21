@@ -19,6 +19,7 @@ radial_segments = 4
 rings = 1
 
 [node name="MouseTarget" type="Node3D"]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 script = ExtResource("1_8bvgl")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

@@ -1,16 +1,18 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 2.0
 const ACCEL = 10
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
+
+var anim_player : AnimationPlayer
 
 var is_picked = false
 
 func _ready():
 	Global.player_node = self
 	
-	var anim_player : AnimationPlayer = $character_1.get_node("AnimationPlayer")
+	anim_player = $character_1.get_node("AnimationPlayer")
 	anim_player.play("walk")
 
 func _process(delta):
@@ -25,6 +27,14 @@ func _physics_process(delta):
 	
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
+	
+	#self.look_at(nav.target_position) #arreglar que este girado (en teoria lo de abajo lo arregla)
+	if velocity != Vector3.ZERO:
+		var lookdir = atan2(velocity.x, velocity.z)
+		rotation.y = lerp(rotation.y, lookdir, 0.1)
+		anim_player.current_animation = "walk"
+	else:
+		anim_player.current_animation = "Action_001"
 	
 	velocity = velocity.lerp(direction * SPEED, ACCEL * delta)
 	

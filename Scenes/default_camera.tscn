@@ -11,5 +11,5 @@ script = ExtResource("1_q7664")
 [node name="Camera3D" type="Camera3D" parent="DefaultCamera"]
 script = ExtResource("1_uru40")
 SCROLL_SPEED = 100.0
-ROTATE_SPEED = 5.0
+ROTATE_SPEED = 1.0
 ANCHOR_NODE_PATH = NodePath("..")

@@ -2,6 +2,15 @@ extends Node3D
 
 var mouse_speed : Vector2
 
+var camera_panning = false
+
+func _process(delta):
+	if Global.camera_target != null:
+		self.transform.origin = Global.camera_target.transform.origin
+	
+	if camera_panning == true:
+		Global.camera_target = null
+
 func _physics_process(delta):
 	#Update mouse speed
 	mouse_speed = Input.get_last_mouse_velocity()
@@ -16,13 +25,17 @@ func camera_pan():
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 		self.transform.origin += Vector3(mouse_speed.x / 1000, 0, mouse_speed.y / 1000).rotated(Vector3(0,1,0), angle)
-	else:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		camera_panning = true
 	
-	var input_dir = Input.get_vector("camera_pan_forwards", "camera_pan_backwards", "camera_pan_left", "camera_pan_right")
-	if input_dir:
+	elif Input.get_vector("camera_pan_forwards", "camera_pan_backwards", "camera_pan_left", "camera_pan_right"):
+		var input_dir = Input.get_vector("camera_pan_forwards", "camera_pan_backwards", "camera_pan_left", "camera_pan_right")
 		var direction = (transform.basis * Vector3(input_dir.y, 0, input_dir.x)).normalized()
 		self.transform.origin += direction.rotated(Vector3(0,1,0), angle)
+		camera_panning = true
+	
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+		camera_panning = false
 		
 func mouse_raycast():
 	var space_state = get_world_3d().direct_space_state
@@ -35,4 +48,5 @@ func mouse_raycast():
 	var intersection = space_state.intersect_ray(raycast)
 	
 	if not intersection.is_empty():
-		Global.player_target_pos = intersection.position
+		if !Global.player_node.is_picked:
+			Global.player_target_pos = intersection.position

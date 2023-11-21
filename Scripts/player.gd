@@ -29,12 +29,13 @@ func _physics_process(delta):
 	direction = direction.normalized()
 	
 	if velocity.length() > 0: #Ajustar este numero para corregir la transición
-		#self.look_at(Vector3(-nav.target_position.x, 2, -nav.target_position.z)) #funciona a medias (este deberia de ser mejor)
+		#self.look_at(Vector3(-nav.target_position.x, 2, -nav.target_position.z)) # va raro
 		var lookdir = atan2(velocity.x, velocity.z)
-		print(rotation.y, lookdir)
-		#rotation.y = lerp(rotation.y, lookdir, 0.1)
-		if rotation.y != lookdir:
-			rotate_y(lookdir - rotation.y)
+		rotation.y = lerp(rotation.y, lookdir, 0.1) #al usar angulos se rompe por limitacion
+		#esto sigue teniendo la limitacion del anterior porque resto lookdir - rotation.y
+		#if rotation.y != lookdir:
+			#rotate_y((lookdir - rotation.y) / 10)
+		
 		anim_player.current_animation = "walk"
 	else:
 		anim_player.current_animation = "Action_001"

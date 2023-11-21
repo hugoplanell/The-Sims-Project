@@ -28,10 +28,13 @@ func _physics_process(delta):
 	direction = nav.get_next_path_position() - global_position
 	direction = direction.normalized()
 	
-	#self.look_at(nav.target_position) #arreglar que este girado (en teoria lo de abajo lo arregla)
 	if velocity.length() > 0: #Ajustar este numero para corregir la transición
+		#self.look_at(Vector3(-nav.target_position.x, 2, -nav.target_position.z)) #funciona a medias (este deberia de ser mejor)
 		var lookdir = atan2(velocity.x, velocity.z)
-		rotation.y = lerp(rotation.y, lookdir, 0.1)
+		print(rotation.y, lookdir)
+		#rotation.y = lerp(rotation.y, lookdir, 0.1)
+		if rotation.y != lookdir:
+			rotate_y(lookdir - rotation.y)
 		anim_player.current_animation = "walk"
 	else:
 		anim_player.current_animation = "Action_001"

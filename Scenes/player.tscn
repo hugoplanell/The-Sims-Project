@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://dsihd7ufspwhn"]
+
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_1kbvs"]
+[ext_resource type="Texture2D" uid="uid://bmx3y2i231upo" path="res://addons/kenney_prototype_textures/orange/texture_08.png" id="1_xbx7r"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akg6l"]
+albedo_texture = ExtResource("1_xbx7r")
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_ptr5m"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_rji5g"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_1kbvs")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("StandardMaterial3D_akg6l")
+mesh = SubResource("CapsuleMesh_ptr5m")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_rji5g")

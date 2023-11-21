@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://30bn6ns6kqaj"]
+
+[ext_resource type="Script" path="res://Scripts/default_camera.gd" id="1_q7664"]
+[ext_resource type="Script" path="res://addons/orbit_camera/orbit_camera.gd" id="1_uru40"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_q7664")
+
+[node name="DefaultCamera" type="Marker3D" parent="."]
+
+[node name="Camera3D" type="Camera3D" parent="DefaultCamera"]
+script = ExtResource("1_uru40")
+SCROLL_SPEED = 100.0
+ROTATE_SPEED = 5.0
+ANCHOR_NODE_PATH = NodePath("..")

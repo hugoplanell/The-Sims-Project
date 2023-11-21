@@ -52,8 +52,9 @@ func mouse_raycast(delta: float):
 	
 	var intersection = space_state.intersect_ray(raycast)
 	
-	if not intersection.is_empty():
-		if !Global.player_node.is_picked:
-			Global.player_target_pos = intersection.position
+	if !intersection.is_empty():
+		if Global.player_node != null:
+			if !Global.player_node.is_picked:
+				Global.player_target_pos = intersection.position
 
 

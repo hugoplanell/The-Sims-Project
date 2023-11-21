@@ -32,7 +32,11 @@ func _process(delta: float):
 		_scroll_speed = -1 * ZOOM_SPEED
 	if is_zoom_out:
 		_scroll_speed = 1 * ZOOM_SPEED
+	
 	_process_transformation(delta)
+	
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
 func _process_transformation(delta: float):
 	# Update rotation

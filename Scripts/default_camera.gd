@@ -3,6 +3,11 @@ extends Node3D
 var mouse_speed : Vector2
 
 var camera_panning = false
+@export var panning_speed:float = 1.0
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_speed = event.relative
 
 func _process(delta):
 	if Global.camera_target != null:
@@ -10,34 +15,34 @@ func _process(delta):
 	
 	if camera_panning == true:
 		Global.camera_target = null
-
-func _physics_process(delta):
-	#Update mouse speed
-	mouse_speed = Input.get_last_mouse_velocity()
 	
-	mouse_raycast()
-	camera_pan()
+	#reset mouse_speed when mouse is not moving
+	mouse_speed = Vector2.ZERO
+	
+func _physics_process(delta):
 
-func camera_pan():
+	mouse_raycast(delta)
+	camera_pan(delta)
+
+func camera_pan(delta: float):
 	var angle = (self.global_rotation.y + $DefaultCamera/Camera3D.global_rotation.y)
 	
 	if Input.is_action_pressed("middle_click"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
-		self.transform.origin += Vector3(mouse_speed.x / 1000, 0, mouse_speed.y / 1000).rotated(Vector3(0,1,0), angle)
+		self.transform.origin += Vector3(mouse_speed.x * delta * panning_speed, 0, mouse_speed.y * delta * panning_speed).rotated(Vector3(0,1,0), angle)
 		camera_panning = true
 	
 	elif Input.get_vector("camera_pan_forwards", "camera_pan_backwards", "camera_pan_left", "camera_pan_right"):
 		var input_dir = Input.get_vector("camera_pan_forwards", "camera_pan_backwards", "camera_pan_left", "camera_pan_right")
 		var direction = (transform.basis * Vector3(input_dir.y, 0, input_dir.x)).normalized()
-		self.transform.origin += direction.rotated(Vector3(0,1,0), angle)
+		self.transform.origin += direction.rotated(Vector3(0,1,0), angle) * delta * 10
 		camera_panning = true
 	
 	else:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		camera_panning = false
 		
-func mouse_raycast():
+func mouse_raycast(delta: float):
 	var space_state = get_world_3d().direct_space_state
 	
 	var from = $DefaultCamera/Camera3D.project_ray_origin(get_viewport().get_mouse_position())
@@ -50,3 +55,5 @@ func mouse_raycast():
 	if not intersection.is_empty():
 		if !Global.player_node.is_picked:
 			Global.player_target_pos = intersection.position
+
+

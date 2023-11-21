@@ -24,6 +24,7 @@ sky = SubResource("Sky_dgn1s")
 script = ExtResource("1_kj8u6")
 
 [node name="DefaultCamera" parent="." instance=ExtResource("2_h7nle")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_wc0o4")

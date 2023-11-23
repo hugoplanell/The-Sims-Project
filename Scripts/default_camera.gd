@@ -25,7 +25,7 @@ func _physics_process(delta):
 	camera_pan(delta)
 
 func camera_pan(delta: float):
-	var angle = (self.global_rotation.y + $DefaultCamera/Camera3D.global_rotation.y)
+	var angle = (self.global_rotation.y + $CameraTracker/Camera3D.global_rotation.y)
 	
 	if Input.is_action_pressed("middle_click"):
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -45,8 +45,8 @@ func camera_pan(delta: float):
 func mouse_raycast(delta: float):
 	var space_state = get_world_3d().direct_space_state
 	
-	var from = $DefaultCamera/Camera3D.project_ray_origin(get_viewport().get_mouse_position())
-	var to = from + $DefaultCamera/Camera3D.project_ray_normal(get_viewport().get_mouse_position()) * 1000
+	var from = $CameraTracker/Camera3D.project_ray_origin(get_viewport().get_mouse_position())
+	var to = from + $CameraTracker/Camera3D.project_ray_normal(get_viewport().get_mouse_position()) * 1000
 	
 	var raycast = PhysicsRayQueryParameters3D.create(from, to)
 	

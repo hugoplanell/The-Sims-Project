@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://snu6t2y2qkdy"]
+[gd_scene load_steps=11 format=3 uid="uid://snu6t2y2qkdy"]
 
 [ext_resource type="Script" path="res://Scripts/debug_level.gd" id="1_kj8u6"]
 [ext_resource type="Material" uid="uid://vn25c6s3hm71" path="res://Assets/Materials/Debug/debug_level.tres" id="2_oqek6"]
 [ext_resource type="PackedScene" uid="uid://7b7dokedkh24" path="res://Scenes/player.tscn" id="3_whcwc"]
+[ext_resource type="Script" path="res://Scripts/NavigationRegion3D.gd" id="4_jc3f4"]
 [ext_resource type="PackedScene" uid="uid://dsihd7ufspwhn" path="res://Scenes/character.tscn" id="4_sixgo"]
 [ext_resource type="VoxelGIData" uid="uid://fyt4sdke2n11" path="res://Scenes/debug_level.VoxelGI_data.res" id="6_wqs2a"]
 
@@ -32,6 +33,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50157, 0)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_wc0o4")
+script = ExtResource("4_jc3f4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
 use_collision = true
@@ -52,3 +54,5 @@ shadow_enabled = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.35245, 0)
 size = Vector3(52.3909, 12.3625, 51.4426)
 data = ExtResource("6_wqs2a")
+
+[editable path="Player"]

@@ -1,15 +1,21 @@
 extends Node
 
-@onready var camera = $"../PlayerCamera"
-@onready var mouse_target = $"../MouseTarget"
+@onready var root = $"../.."
+@onready var camera = $"../../PlayerCamera"
+@onready var mouse_target = preload("res://Scenes/mouse_target.tscn").instantiate()
+
+signal transitioned(new_state)
+
+enum {CHARACTER_MODE, BUILDING_MODE} #temporal, no deberia de estar
 
 func enter():
-	pass
+	root.add_child.call_deferred(mouse_target)
 
 func exit():
-	pass
+	mouse_target.queue_free()
 
 func update(_delta: float):
+	print(mouse_target)
 	if Global.character_node != null:
 		if Global.character_node.is_picked:
 			camera.transform.origin = Global.character_node.transform.origin
@@ -22,7 +28,7 @@ func physics_update(_delta: float):
 
 
 func _on_player_camera_mouse_position_3d(position):
-	if Global.character_node != null:
+	if Global.character_node != null and root.state == CHARACTER_MODE: #mejorar esto
 		if !Global.character_node.is_hovered:
 			mouse_target.position = position
 			

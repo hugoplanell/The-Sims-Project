@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1kbvs"]
 [ext_resource type="PackedScene" uid="uid://30bn6ns6kqaj" path="res://Scenes/player_camera.tscn" id="1_22vn5"]
-[ext_resource type="PackedScene" uid="uid://cu74sgebedf7h" path="res://Scenes/mouse_target.tscn" id="2_1lhqo"]
 [ext_resource type="Script" path="res://Scripts/CharacterManager.gd" id="4_0ux48"]
+[ext_resource type="Script" path="res://Scripts/PlayerStateManager.gd" id="4_i1uqe"]
 [ext_resource type="Script" path="res://Scripts/BuildingManager.gd" id="5_e5tqw"]
 
 [node name="Player" type="Node3D"]
@@ -11,13 +11,13 @@ script = ExtResource("1_1kbvs")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("1_22vn5")]
 
-[node name="MouseTarget" parent="." instance=ExtResource("2_1lhqo")]
-script = null
+[node name="StateManager" type="Node" parent="."]
+script = ExtResource("4_i1uqe")
 
-[node name="CharacterManager" type="Node" parent="."]
+[node name="CharacterManager" type="Node" parent="StateManager"]
 script = ExtResource("4_0ux48")
 
-[node name="BuildingManager" type="Node" parent="."]
+[node name="BuildingManager" type="Node" parent="StateManager"]
 script = ExtResource("5_e5tqw")
 
-[connection signal="mouse_position_3d" from="PlayerCamera" to="CharacterManager" method="_on_player_camera_mouse_position_3d"]
+[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/CharacterManager" method="_on_player_camera_mouse_position_3d"]

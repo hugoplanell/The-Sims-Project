@@ -38,7 +38,7 @@ func _process(delta):
 	"""
 		
 func _physics_process(delta):
-	print(is_picked, Global.character_node)
+	#print(is_picked, Global.character_node)
 	player_movement(delta)
 	state_machine()
 

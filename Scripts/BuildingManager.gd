@@ -1,5 +1,7 @@
 extends Node
 
+signal transitioned(new_state)
+
 func enter():
 	pass
 

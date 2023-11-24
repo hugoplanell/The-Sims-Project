@@ -20,11 +20,12 @@ var anim_player : AnimationPlayer
 
 var SPEED = 2.0
 
+var is_hovered = false
 var is_picked = false
 var is_running = false
 
 func _ready():
-	Global.character_node = self
+	#Global.character_node = self # esto se deberia de quitar si hay mas de un character
 	
 	anim_player = $character_1.get_node("AnimationPlayer")
 	anim_player.play("walk")
@@ -37,16 +38,17 @@ func _process(delta):
 	"""
 		
 func _physics_process(delta):
-	
+	print(is_picked, Global.character_node)
 	player_movement(delta)
 	state_machine()
 
 func state_machine() -> void:
 	match playback.get_current_node():
 		"idle":
-			print("idling")
+			pass
+			#print("idling")
 		"walk":
-			print("walking")
+			#print("walking")
 			if((nav.target_position - self.global_position).length() > 20):
 				SPEED = 4.0
 		"run":
@@ -74,13 +76,17 @@ func player_movement(delta: float):
 func _on_input_event(camera, event, position, normal, shape_idx):
 	
 	if Input.is_action_just_pressed("left_click"):
-		Global.camera_target = self
+		if Global.character_node != self:
+			Global.character_node = self
+		else:
+			is_picked = true
+		
 
 func _on_mouse_entered():
-	is_picked = true
+	is_hovered = true
 
 func _on_mouse_exited():
-	is_picked = false
+	is_hovered = false
 
 
 

@@ -1,11 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://7b7dokedkh24"]
+[gd_scene load_steps=6 format=3 uid="uid://7b7dokedkh24"]
 
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_1kbvs"]
 [ext_resource type="PackedScene" uid="uid://30bn6ns6kqaj" path="res://Scenes/player_camera.tscn" id="1_22vn5"]
 [ext_resource type="PackedScene" uid="uid://cu74sgebedf7h" path="res://Scenes/mouse_target.tscn" id="2_1lhqo"]
+[ext_resource type="Script" path="res://Scripts/CharacterManager.gd" id="4_0ux48"]
+[ext_resource type="Script" path="res://Scripts/BuildingManager.gd" id="5_e5tqw"]
 
 [node name="Player" type="Node3D"]
+script = ExtResource("1_1kbvs")
 
 [node name="PlayerCamera" parent="." instance=ExtResource("1_22vn5")]
 
 [node name="MouseTarget" parent="." instance=ExtResource("2_1lhqo")]
 script = null
+
+[node name="CharacterManager" type="Node" parent="."]
+script = ExtResource("4_0ux48")
+
+[node name="BuildingManager" type="Node" parent="."]
+script = ExtResource("5_e5tqw")

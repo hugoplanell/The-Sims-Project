@@ -8,11 +8,12 @@ var camera_panning = false
 @export var panning_speed:float = 1.0
 
 func _process(delta):
-	if Global.camera_target != null:
-		self.transform.origin = Global.camera_target.transform.origin
-	
-	if camera_panning == true:
-		Global.camera_target = null
+	if Global.character_node != null:
+		if Global.character_node.is_picked:
+			self.transform.origin = Global.character_node.transform.origin
+		
+		if camera_panning == true:
+			Global.character_node.is_picked = false
 	
 	#reset mouse_speed when mouse is not moving
 	mouse_speed = Vector2.ZERO
@@ -56,7 +57,7 @@ func mouse_raycast(delta: float):
 	
 	if !intersection.is_empty():
 		if Global.character_node != null:
-			if !Global.character_node.is_picked:
+			if !Global.character_node.is_hovered:
 				mouse_target.position = intersection.position
 				
 				if Input.is_action_just_pressed("left_click"):

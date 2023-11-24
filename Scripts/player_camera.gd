@@ -1,20 +1,13 @@
 extends Node3D
 
-@onready var mouse_target = $"../MouseTarget"
-
 var mouse_speed : Vector2
 
 var camera_panning = false
 @export var panning_speed:float = 1.0
 
+signal mouse_position_3d(position)
+
 func _process(delta):
-	if Global.character_node != null:
-		if Global.character_node.is_picked:
-			self.transform.origin = Global.character_node.transform.origin
-		
-		if camera_panning == true:
-			Global.character_node.is_picked = false
-	
 	#reset mouse_speed when mouse is not moving
 	mouse_speed = Vector2.ZERO
 	
@@ -56,11 +49,6 @@ func mouse_raycast(delta: float):
 	var intersection = space_state.intersect_ray(raycast)
 	
 	if !intersection.is_empty():
-		if Global.character_node != null:
-			if !Global.character_node.is_hovered:
-				mouse_target.position = intersection.position
-				
-				if Input.is_action_just_pressed("left_click"):
-					Global.character_node.nav.target_position = intersection.position
+		mouse_position_3d.emit(intersection.position)
 
 

@@ -19,3 +19,5 @@ script = ExtResource("4_0ux48")
 
 [node name="BuildingManager" type="Node" parent="."]
 script = ExtResource("5_e5tqw")
+
+[connection signal="mouse_position_3d" from="PlayerCamera" to="CharacterManager" method="_on_player_camera_mouse_position_3d"]

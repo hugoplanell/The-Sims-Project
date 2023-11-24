@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cqiw3yqloh1v8"]
 
 [ext_resource type="Script" path="res://Scenes/construction_debug.gd" id="1_akxfw"]
-[ext_resource type="PackedScene" uid="uid://30bn6ns6kqaj" path="res://Scenes/default_camera.tscn" id="1_v1ru2"]
+[ext_resource type="PackedScene" uid="uid://30bn6ns6kqaj" path="res://Scenes/player_camera.tscn" id="1_v1ru2"]
 [ext_resource type="Material" uid="uid://vn25c6s3hm71" path="res://Assets/Materials/Debug/debug_level.tres" id="2_6se6w"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_lhrd1"]

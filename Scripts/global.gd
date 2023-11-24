@@ -4,7 +4,7 @@ extends Node
 
 @onready var camera_target : Node3D = null
 
-@onready var player_node : CharacterBody3D
+@onready var character_node : CharacterBody3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

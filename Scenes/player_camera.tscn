@@ -1,10 +1,10 @@
 [gd_scene load_steps=3 format=3 uid="uid://30bn6ns6kqaj"]
 
-[ext_resource type="Script" path="res://Scripts/default_camera.gd" id="1_q7664"]
+[ext_resource type="Script" path="res://Scripts/player_camera.gd" id="1_ov7aa"]
 [ext_resource type="Script" path="res://addons/orbit_camera/orbit_camera.gd" id="1_uru40"]
 
-[node name="DefaultCamera" type="Node3D"]
-script = ExtResource("1_q7664")
+[node name="PlayerCamera" type="Node3D"]
+script = ExtResource("1_ov7aa")
 
 [node name="CameraTracker" type="Marker3D" parent="."]
 

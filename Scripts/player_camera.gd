@@ -1,13 +1,11 @@
 extends Node3D
 
+@onready var mouse_target = $"../MouseTarget"
+
 var mouse_speed : Vector2
 
 var camera_panning = false
 @export var panning_speed:float = 1.0
-
-func _input(event):
-	if event is InputEventMouseMotion:
-		mouse_speed = event.relative
 
 func _process(delta):
 	if Global.camera_target != null:
@@ -23,6 +21,10 @@ func _physics_process(delta):
 
 	mouse_raycast(delta)
 	camera_pan(delta)
+
+func _input(event):
+	if event is InputEventMouseMotion:
+		mouse_speed = event.relative
 
 func camera_pan(delta: float):
 	var angle = (self.global_rotation.y + $CameraTracker/Camera3D.global_rotation.y)
@@ -53,8 +55,11 @@ func mouse_raycast(delta: float):
 	var intersection = space_state.intersect_ray(raycast)
 	
 	if !intersection.is_empty():
-		if Global.player_node != null:
-			if !Global.player_node.is_picked:
-				Global.player_target_pos = intersection.position
+		if Global.character_node != null:
+			if !Global.character_node.is_picked:
+				mouse_target.position = intersection.position
+				
+				if Input.is_action_just_pressed("left_click"):
+					Global.character_node.nav.target_position = intersection.position
 
 

@@ -32,6 +32,7 @@ func exit():
 
 func update(_delta: float):
 	temp_reference_cube.position = mouse_position
+	#current_scene.get_node("Lighting").get_node("VoxelGI").bake()
 	
 	if(build_ready):
 		var wall = CSGBox3D.new()
@@ -58,6 +59,20 @@ func update(_delta: float):
 		arr.resize(2)
 		print("reset")
 		build_ready = false
+		
+		temp_reference_cube.position = mouse_position
+		temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS)
+	
+	if arr[0]:
+		var size_x = (mouse_position.x - arr[0].x)
+		var size_z = (mouse_position.z - arr[0].z)
+		
+		if abs(size_x) > abs(size_z):
+			temp_reference_cube.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z)
+			temp_reference_cube.size = Vector3(abs(size_x),WALL_HEIGHT,WALL_THICKNESS)
+		else:
+			temp_reference_cube.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
+			temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
 
 func physics_update(_delta: float):
 	#print("building_physics_update")

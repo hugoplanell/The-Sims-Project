@@ -20,7 +20,7 @@ func exit():
 	active = false
 
 func update(_delta: float):
-	print(mouse_target)
+	#print(mouse_target)
 	if Global.character_node != null:
 		if Global.character_node.is_picked:
 			camera.transform.origin = Global.character_node.transform.origin

@@ -7,12 +7,14 @@ var states : Dictionary = {}
 
 var active: bool = false
 
-func enter():
-	active = true
+func _ready():
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(_on_child_transition)
+
+func enter():
+	active = true
 	
 	if initial_state:
 		initial_state.enter()
@@ -20,6 +22,7 @@ func enter():
 
 func exit():
 	active = false
+	current_state.exit()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(_delta: float):

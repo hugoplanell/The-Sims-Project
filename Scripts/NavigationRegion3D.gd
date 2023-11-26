@@ -3,7 +3,8 @@ extends NavigationRegion3D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$"..".get_node("Player/StateManager/BuildingManager").connect("nav_mesh_changed", _on_nav_mesh_changed)
+	#mejorar esta parte para no tener que conectar esto a cada nodo que necesite modificar el nav_mesh
+	$"..".get_node("Player/StateManager/BuildingManager/Wall").connect("nav_mesh_changed", _on_nav_mesh_changed)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

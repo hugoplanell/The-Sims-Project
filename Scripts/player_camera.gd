@@ -54,5 +54,7 @@ func mouse_raycast(delta: float):
 		
 		if intersection.collider is BuildingObject3D:
 			object_hovered.emit(intersection.collider)
+		else:
+			object_hovered.emit(null)
 
 

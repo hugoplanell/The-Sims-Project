@@ -9,6 +9,8 @@ enum BuildingMode {BUILD, REMOVE}
 
 var current_building_mode = BuildingMode.BUILD
 
+var hovering_object : BuildingObject3D = null
+
 var active: bool = false
 
 func _ready():
@@ -67,11 +69,15 @@ func _on_child_transition(new_state_name):
 
 func _on_player_camera_object_hovered(object):
 	if active:
-		object._hovered(current_building_mode)
-		"""
-		match current_building_mode:
-			BuildingMode.BUILD:
-				pass
-			BuildingMode.REMOVE:
-				pass
-		"""
+		if current_building_mode == BuildingMode.REMOVE:
+			if hovering_object and object:
+				if hovering_object != object:
+					hovering_object.is_hovered = false
+					hovering_object = object
+					hovering_object.is_hovered = true
+			elif !hovering_object and object:
+					hovering_object = object
+					hovering_object.is_hovered = true
+			elif hovering_object and !object:
+				if hovering_object != null: hovering_object.is_hovered = false
+				hovering_object = null

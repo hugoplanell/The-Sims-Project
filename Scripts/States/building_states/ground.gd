@@ -29,7 +29,7 @@ func exit():
 	temp_reference_cube.queue_free()
 
 func update(_delta: float):
-	temp_reference_cube.position = mouse_position
+	temp_reference_cube.position = Vector3(floor(mouse_position.x + 0.5), mouse_position.y, floor(mouse_position.z + 0.5))
 	#current_scene.get_node("Lighting").get_node("VoxelGI").bake()
 	
 	if(build_ready):
@@ -83,4 +83,5 @@ func _on_player_camera_mouse_position_3d(position):
 				build_ready = true
 		
 		#$CSGMesh3D.position = floor(position + Vector3(0.5,1,0.5))
-		mouse_position = floor(position + Vector3(0.5,1,0.5))
+		#mouse_position = floor(position + Vector3(0.5,1,0.5))
+		mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))

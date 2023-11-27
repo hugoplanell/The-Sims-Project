@@ -33,10 +33,8 @@ func physics_update(_delta: float):
 	if current_state:
 		current_state.physics_update(_delta)
 
-func _on_child_transition(state, new_state_name):
-	if state != current_state:
-		return
-		
+func _on_child_transition(new_state_name):
+	
 	var new_state = states.get(new_state_name.to_lower())
 	if !new_state:
 		return

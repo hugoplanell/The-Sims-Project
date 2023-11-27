@@ -15,6 +15,12 @@ func _process(delta):
 			$StateManager.on_state_transition(BUILDING_MODE)
 		else:
 			$StateManager.on_state_transition(CHARACTER_MODE)
+			
+	if state == BUILDING_MODE:
+		if Input.is_action_just_pressed("debug_building_1"):
+			$StateManager/BuildingManager._on_child_transition("Wall")
+		elif Input.is_action_just_pressed("debug_building_2"):
+			$StateManager/BuildingManager._on_child_transition("Ground")
 
 func _physics_process(delta):
 	pass

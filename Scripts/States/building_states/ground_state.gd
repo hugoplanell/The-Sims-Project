@@ -3,7 +3,7 @@ extends State
 
 const GROUND_THICKNESS = 0.2
 
-#@onready var wall_material = preload("res://Assets/Materials/Debug/debug_level.tres")
+@onready var ground_material = preload("res://Assets/Materials/Debug/debug_ground.tres")
 @onready var current_scene = get_tree().get_current_scene() #mirar mejores formas de hacer esto(valorar un global)
 
 var arr = [null, null]
@@ -29,12 +29,12 @@ func exit():
 	temp_reference_cube.queue_free()
 
 func update(_delta: float):
-	temp_reference_cube.position = Vector3(floor(mouse_position.x + 0.5), mouse_position.y, floor(mouse_position.z + 0.5))
+	temp_reference_cube.position = Vector3((mouse_position.x + 0.5), mouse_position.y, (mouse_position.z + 0.5))
 	#current_scene.get_node("Lighting").get_node("VoxelGI").bake()
 	
 	if(build_ready):
 		var ground = Ground3D.new()
-		#ground.material = wall_material
+		ground.material = ground_material
 		
 		var size_x = (arr[1].x - arr[0].x)
 		var size_z = (arr[1].z - arr[0].z)
@@ -50,13 +50,7 @@ func update(_delta: float):
 		
 		nav_mesh_changed.emit()
 		
-		arr.clear()
-		arr.resize(2)
-		print("reset")
-		build_ready = false
-		
-		temp_reference_cube.position = mouse_position
-		temp_reference_cube.size = Vector3(1,GROUND_THICKNESS,1)
+		reset_building()
 	
 	if arr[0]:
 		var size_x = (mouse_position.x - arr[0].x)
@@ -64,6 +58,9 @@ func update(_delta: float):
 		
 		temp_reference_cube.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z + size_z / 2)
 		temp_reference_cube.size = Vector3(abs(size_x),GROUND_THICKNESS,abs(size_z))
+		
+		if Input.is_action_just_pressed("right_click"):
+			reset_building()
 	
 	
 func physics_update(_delta: float):
@@ -85,3 +82,12 @@ func _on_player_camera_mouse_position_3d(position):
 		#$CSGMesh3D.position = floor(position + Vector3(0.5,1,0.5))
 		#mouse_position = floor(position + Vector3(0.5,1,0.5))
 		mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))
+
+func reset_building():
+	arr.clear()
+	arr.resize(2)
+	print("reset")
+	build_ready = false
+	
+	temp_reference_cube.position = mouse_position
+	temp_reference_cube.size = Vector3(1,GROUND_THICKNESS,1)

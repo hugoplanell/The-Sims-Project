@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://snu6t2y2qkdy"]
+[gd_scene load_steps=11 format=3 uid="uid://snu6t2y2qkdy"]
 
 [ext_resource type="Script" path="res://Scripts/debug_level.gd" id="1_kj8u6"]
 [ext_resource type="Material" uid="uid://vn25c6s3hm71" path="res://Assets/Materials/Debug/debug_level.tres" id="2_oqek6"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/NavigationRegion3D.gd" id="4_jc3f4"]
 [ext_resource type="PackedScene" uid="uid://dsihd7ufspwhn" path="res://Scenes/character.tscn" id="4_sixgo"]
 [ext_resource type="VoxelGIData" uid="uid://fyt4sdke2n11" path="res://Scenes/debug_level.VoxelGI_data.res" id="6_wqs2a"]
-[ext_resource type="Material" uid="uid://8hqyjdgj2br2" path="res://Assets/Materials/pixel_perfect_outline.tres" id="6_x8abu"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_wc0o4"]
 vertices = PackedVector3Array(-18.5, 1, -24.5, -24.5, 1, -24.5, -24.5, 1, -18.5, -24.5, 1, 18.25, -24.5, 1, 24.5, -18.5, 1, 24.5, 24.5, 1, -18.5, 24.5, 1, -24.5, 18.25, 1, -24.5, 18.25, 1, 24.5, 24.5, 1, 24.5, 24.5, 1, 18.25, -24.5, 1, 12.25, -24.5, 1, 18.25, -18.5, 1, 24.5, -12.25, 1, 24.5, 24.5, 1, -18.5, 18.25, 1, -24.5, 12.25, 1, -24.5, 24.5, 1, -12.25, -12.25, 1, -24.5, -18.5, 1, -24.5, -24.5, 1, -18.5, -24.5, 1, -12.25, 12.25, 1, 24.5, 18.25, 1, 24.5, 24.5, 1, 18.25, 6, 1, 24.5, 24.5, 1, 12.25, 24.5, 1, 6, 0, 1, 24.5, 12.25, 1, 24.5, 24.5, 1, 18.25, 24.5, 1, 12.25, 6, 1, 24.5, 0, 1, -24.5, -6.25, 1, -24.5, -24.5, 1, -6.25, -24.5, 1, 0, 24.5, 1, 0, 0, 1, -24.5, -24.5, 1, 0, -6.25, 1, 24.5, 0, 1, 24.5, 24.5, 1, 6, -24.5, 1, 12.25, -12.25, 1, 24.5, -6.25, 1, 24.5, -24.5, 1, 6, 24.5, 1, -6.25, 24.5, 1, -12.25, 12.25, 1, -24.5, 6, 1, -24.5, -6.25, 1, -24.5, -12.25, 1, -24.5, -24.5, 1, -12.25, -24.5, 1, -6.25, -24.5, 1, 0, -24.5, 1, 6, -6.25, 1, 24.5, 24.5, 1, -6.25, 6, 1, -24.5, 0, 1, -24.5, 24.5, 1, 0)
@@ -37,15 +36,9 @@ navigation_mesh = SubResource("NavigationMesh_wc0o4")
 script = ExtResource("4_jc3f4")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0157099, 0.0296545, -0.0104361)
 use_collision = true
 size = Vector3(50, 1, 50)
-material = ExtResource("2_oqek6")
-
-[node name="CSGBox3D2" type="CSGBox3D" parent="NavigationRegion3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.88606, 0)
-material_overlay = ExtResource("6_x8abu")
-use_collision = true
-size = Vector3(3.7356, 4.86893, 4.51348)
 material = ExtResource("2_oqek6")
 
 [node name="Lighting" type="Node" parent="."]

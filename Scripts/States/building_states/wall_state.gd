@@ -4,7 +4,7 @@ extends State
 const WALL_HEIGHT = 3
 const WALL_THICKNESS = 0.2
 
-@onready var wall_material = preload("res://Assets/Materials/Debug/debug_level.tres")
+@onready var wall_material = preload("res://Assets/Materials/Debug/debug_wall.tres")
 @onready var current_scene = get_tree().get_current_scene() #mirar mejores formas de hacer esto(valorar un global)
 
 var arr = [null, null]
@@ -36,6 +36,8 @@ func update(_delta: float):
 	if(build_ready):
 		var wall = Wall3D.new()
 		wall.material = wall_material
+		#wall.material = wall_material.duplicate()
+		#wall.material.albedo_color = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
 		
 		var size_x = (arr[1].x - arr[0].x)
 		var size_z = (arr[1].z - arr[0].z)
@@ -54,13 +56,7 @@ func update(_delta: float):
 		
 		nav_mesh_changed.emit()
 		
-		arr.clear()
-		arr.resize(2)
-		print("reset")
-		build_ready = false
-		
-		temp_reference_cube.position = mouse_position
-		temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS)
+		reset_building()
 	
 	if arr[0]:
 		var size_x = (mouse_position.x - arr[0].x)
@@ -72,11 +68,13 @@ func update(_delta: float):
 		else:
 			temp_reference_cube.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
 			temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
+		
+		if Input.is_action_just_pressed("right_click"):
+			reset_building()
 
 func physics_update(_delta: float):
 	#print("building_physics_update")
 	pass
-
 
 func _on_player_camera_mouse_position_3d(position):
 	if active:
@@ -91,3 +89,12 @@ func _on_player_camera_mouse_position_3d(position):
 		
 		#$CSGMesh3D.position = floor(position + Vector3(0.5,1,0.5))
 		mouse_position = floor(position + Vector3(0.5,2,0.5))
+
+func reset_building():
+	arr.clear()
+	arr.resize(2)
+	print("reset")
+	build_ready = false
+	
+	temp_reference_cube.position = mouse_position
+	temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS)

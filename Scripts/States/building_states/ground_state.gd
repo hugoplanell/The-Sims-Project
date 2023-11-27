@@ -33,7 +33,7 @@ func update(_delta: float):
 	#current_scene.get_node("Lighting").get_node("VoxelGI").bake()
 	
 	if(build_ready):
-		var ground = CSGBox3D.new()
+		var ground = Ground3D.new()
 		#ground.material = wall_material
 		
 		var size_x = (arr[1].x - arr[0].x)

@@ -50,5 +50,6 @@ func mouse_raycast(delta: float):
 	
 	if !intersection.is_empty():
 		mouse_position_3d.emit(intersection.position)
+		print(intersection.collider)
 
 

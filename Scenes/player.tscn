@@ -5,8 +5,8 @@
 [ext_resource type="Script" path="res://Scripts/CharacterManager.gd" id="4_0ux48"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateManager.gd" id="4_i1uqe"]
 [ext_resource type="Script" path="res://Scripts/BuildingManager.gd" id="5_e5tqw"]
-[ext_resource type="Script" path="res://Scripts/States/building_states/wall.gd" id="6_tqa3m"]
-[ext_resource type="Script" path="res://Scripts/States/building_states/ground.gd" id="7_jxgh7"]
+[ext_resource type="Script" path="res://Scripts/States/building_states/wall_state.gd" id="6_w2clr"]
+[ext_resource type="Script" path="res://Scripts/States/building_states/ground_state.gd" id="7_idgyi"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_1kbvs")
@@ -24,11 +24,12 @@ script = ExtResource("5_e5tqw")
 initial_state = NodePath("Wall")
 
 [node name="Wall" type="Node" parent="StateManager/BuildingManager"]
-script = ExtResource("6_tqa3m")
+script = ExtResource("6_w2clr")
 
 [node name="Ground" type="Node" parent="StateManager/BuildingManager"]
-script = ExtResource("7_jxgh7")
+script = ExtResource("7_idgyi")
 
 [connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/CharacterManager" method="_on_player_camera_mouse_position_3d"]
 [connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/Wall" method="_on_player_camera_mouse_position_3d"]
 [connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/Ground" method="_on_player_camera_mouse_position_3d"]
+[connection signal="object_hovered" from="PlayerCamera" to="StateManager/BuildingManager" method="_on_player_camera_object_hovered"]

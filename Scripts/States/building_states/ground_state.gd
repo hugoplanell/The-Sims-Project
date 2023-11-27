@@ -1,10 +1,9 @@
-class_name Wall
+class_name GroundBuildingState
 extends State
 
-const WALL_HEIGHT = 3
-const WALL_THICKNESS = 0.2
+const GROUND_THICKNESS = 0.2
 
-@onready var wall_material = preload("res://Assets/Materials/Debug/debug_level.tres")
+#@onready var wall_material = preload("res://Assets/Materials/Debug/debug_level.tres")
 @onready var current_scene = get_tree().get_current_scene() #mirar mejores formas de hacer esto(valorar un global)
 
 var arr = [null, null]
@@ -22,7 +21,7 @@ func enter():
 	active = true
 	temp_reference_cube = CSGBox3D.new()
 	temp_reference_cube.position = mouse_position
-	temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS)
+	temp_reference_cube.size = Vector3(1,GROUND_THICKNESS,1)
 	add_child(temp_reference_cube)
 
 func exit():
@@ -30,25 +29,22 @@ func exit():
 	temp_reference_cube.queue_free()
 
 func update(_delta: float):
-	temp_reference_cube.position = mouse_position
+	temp_reference_cube.position = Vector3(floor(mouse_position.x + 0.5), mouse_position.y, floor(mouse_position.z + 0.5))
 	#current_scene.get_node("Lighting").get_node("VoxelGI").bake()
 	
 	if(build_ready):
-		var wall = CSGBox3D.new()
-		wall.material = wall_material
+		var ground = CSGBox3D.new()
+		#ground.material = wall_material
 		
 		var size_x = (arr[1].x - arr[0].x)
 		var size_z = (arr[1].z - arr[0].z)
 		
-		if abs(size_x) > abs(size_z):
-			wall.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z)
-			wall.size = Vector3(abs(size_x),WALL_HEIGHT,WALL_THICKNESS)
-		else:
-			wall.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
-			wall.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
-		wall.use_collision = true
+		ground.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z + size_z / 2)
+		ground.size = Vector3(abs(size_x),GROUND_THICKNESS,abs(size_z))
 		
-		current_scene.get_node("NavigationRegion3D").add_child(wall)
+		ground.use_collision = true
+		
+		current_scene.get_node("NavigationRegion3D").add_child(ground)
 		
 		#current_scene.get_node("NavigationRegion3D").bake_navigation_mesh()
 		
@@ -60,19 +56,16 @@ func update(_delta: float):
 		build_ready = false
 		
 		temp_reference_cube.position = mouse_position
-		temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS)
+		temp_reference_cube.size = Vector3(1,GROUND_THICKNESS,1)
 	
 	if arr[0]:
 		var size_x = (mouse_position.x - arr[0].x)
 		var size_z = (mouse_position.z - arr[0].z)
 		
-		if abs(size_x) > abs(size_z):
-			temp_reference_cube.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z)
-			temp_reference_cube.size = Vector3(abs(size_x),WALL_HEIGHT,WALL_THICKNESS)
-		else:
-			temp_reference_cube.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
-			temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
-
+		temp_reference_cube.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z + size_z / 2)
+		temp_reference_cube.size = Vector3(abs(size_x),GROUND_THICKNESS,abs(size_z))
+	
+	
 func physics_update(_delta: float):
 	#print("building_physics_update")
 	pass
@@ -90,4 +83,5 @@ func _on_player_camera_mouse_position_3d(position):
 				build_ready = true
 		
 		#$CSGMesh3D.position = floor(position + Vector3(0.5,1,0.5))
-		mouse_position = floor(position + Vector3(0.5,2,0.5))
+		#mouse_position = floor(position + Vector3(0.5,1,0.5))
+		mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))

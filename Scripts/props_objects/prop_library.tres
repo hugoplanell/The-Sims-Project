@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="PropLibrary" load_steps=3 format=3 uid="uid://bufuc35nja2jf"]
+
+[ext_resource type="PackedScene" uid="uid://dkcddb06565aj" path="res://Assets/Models/Props/wc_1/wc_1.glb" id="1_gx6p0"]
+[ext_resource type="Script" path="res://Scripts/props_objects/prop_library.gd" id="1_sc6mx"]
+
+[resource]
+script = ExtResource("1_sc6mx")
+scenes = Array[PackedScene]([ExtResource("1_gx6p0")])

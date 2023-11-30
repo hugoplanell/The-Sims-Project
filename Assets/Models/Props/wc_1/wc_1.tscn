@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://ek6qrvnuva1"]
+
+[ext_resource type="PackedScene" uid="uid://dkcddb06565aj" path="res://Assets/Models/Props/wc_1/wc_1.glb" id="1_vm060"]
+[ext_resource type="Script" path="res://Scripts/props_objects/wc.gd" id="2_r6p54"]
+
+[node name="wc_1" instance=ExtResource("1_vm060")]
+script = ExtResource("2_r6p54")
+
+[node name="Object_2_002" parent="Versailles WC With Seat" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, -2.84217e-14, 0, 2.84217e-14, 1, -0.000177965, 0.341291, 1.6375)

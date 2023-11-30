@@ -62,12 +62,14 @@ func player_movement(delta: float):
 	direction = direction.normalized()
 	
 	if velocity.length() > 0: #Ajustar este numero para corregir la transición
-		#self.look_at(Vector3(-nav.target_position.x, 2, -nav.target_position.z)) # va raro
 		var lookdir = atan2(velocity.x, velocity.z)
-		rotation.y = lerp(rotation.y, lookdir, 0.1) #al usar angulos se rompe por limitacion
-		#esto sigue teniendo la limitacion del anterior porque resto lookdir - rotation.y
-		#if rotation.y != lookdir:
-			#rotate_y((lookdir - rotation.y) / 10)
+		
+		var character_basis = self.transform.basis.get_rotation_quaternion()
+		var rotate_basis = Basis(Vector3(0, 1, 0), lookdir).get_rotation_quaternion()
+		
+		var new_character_basis = character_basis.slerp(rotate_basis, 0.1)
+		
+		transform.basis = Basis(new_character_basis)
 	
 	velocity = velocity.lerp(direction * SPEED, ACCEL * delta)
 	

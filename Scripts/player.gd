@@ -21,6 +21,8 @@ func _process(delta):
 			$StateManager/BuildingManager._on_child_transition("Wall")
 		elif Input.is_action_just_pressed("debug_building_2"):
 			$StateManager/BuildingManager._on_child_transition("Ground")
+		elif Input.is_action_just_pressed("debug_building_3"):
+			$StateManager/BuildingManager._on_child_transition("Prop")
 
 func _physics_process(delta):
 	pass

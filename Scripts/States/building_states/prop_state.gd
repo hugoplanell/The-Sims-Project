@@ -4,9 +4,10 @@ extends State
 @onready var current_scene = get_tree().get_current_scene() #mirar mejores formas de hacer esto(valorar un global)
 @export var prop_library_resource : PropLibrary
 
+var current_prop = null
 var current_prop_idx : int = 0
 
-var current_prop = null
+var current_prop_reference = null
 
 var mouse_position : Vector3 = Vector3.ZERO
 
@@ -20,6 +21,7 @@ func enter():
 	add_child.call_deferred(current_prop)
 
 func exit():
+	current_prop.queue_free()
 	active = false
 
 func update(_delta: float):
@@ -34,11 +36,15 @@ func update(_delta: float):
 	if Input.is_action_just_pressed("debug_change_prop_up"):
 		if current_prop_idx + 1 < prop_library_resource.scenes.size():
 			current_prop_idx += 1
+			current_prop.queue_free()
 			current_prop = prop_library_resource.scenes[current_prop_idx].instantiate()
+			add_child(current_prop)
 	elif Input.is_action_just_pressed("debug_change_prop_down"):
 		if current_prop_idx - 1 >= 0:
 			current_prop_idx -= 1
+			current_prop.queue_free()
 			current_prop = prop_library_resource.scenes[current_prop_idx].instantiate()
+			add_child(current_prop)
 		
 
 func physics_update(_delta: float):

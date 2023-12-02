@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://bhf2a5ob8tupx"
-path="res://.godot/imported/wooden_table_1.glb-57a70267de66471b8d6e13823a60d0e3.scn"
+uid="uid://dkcddb06565aj"
+path="res://.godot/imported/wc_1.glb-a04e2e88aead35aa4288242eadabc34f.scn"
 
 [deps]
 
-source_file="res://Assets/Models/Props/wooden_table_1/wooden_table_1.glb"
-dest_files=["res://.godot/imported/wooden_table_1.glb-57a70267de66471b8d6e13823a60d0e3.scn"]
+source_file="res://Assets/Models/Props/wc_1/wc_1.glb"
+dest_files=["res://.godot/imported/wc_1.glb-a04e2e88aead35aa4288242eadabc34f.scn"]
 
 [params]
 
@@ -30,10 +30,9 @@ animation/remove_immutable_tracks=true
 import_script/path=""
 _subresources={
 "nodes": {
-"PATH:Wooden Table": {
+"PATH:Versailles WC With Seat/Object_3_001": {
 "physics/shape_type": 3,
-"primitive/position": Vector3(-1, 20, 0),
-"primitive/size": Vector3(32, 5, 68)
+"primitive/size": Vector3(0, 0, 0)
 }
 }
 }

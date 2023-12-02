@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PropLibrary" load_steps=4 format=3 uid="uid://bufuc35nja2jf"]
 
-[ext_resource type="PackedScene" uid="uid://ek6qrvnuva1" path="res://Assets/Models/Props/wc_1/wc_1.tscn" id="1_34lwv"]
 [ext_resource type="Script" path="res://Scripts/props_objects/prop_library.gd" id="1_sc6mx"]
-[ext_resource type="PackedScene" path="res://Assets/Models/Props/wooden_table_1/wooden_table_1.glb" id="2_c76o4"]
+[ext_resource type="PackedScene" uid="uid://ek6qrvnuva1" path="res://Assets/Models/Props/wc_1/wc_1.tscn" id="1_xlyqc"]
+[ext_resource type="PackedScene" uid="uid://bhf2a5ob8tupx" path="res://Assets/Models/Props/wooden_table_1/wooden_table_1.glb" id="2_c76o4"]
 
 [resource]
 script = ExtResource("1_sc6mx")
-scenes = Array[PackedScene]([ExtResource("1_34lwv"), ExtResource("2_c76o4")])
+scenes = Array[PackedScene]([ExtResource("1_xlyqc"), ExtResource("2_c76o4")])

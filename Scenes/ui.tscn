@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=3 uid="uid://dtael6eem4wkx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t101g"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_igss5"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2i865"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+corner_radius_bottom_right = 45
+corner_radius_bottom_left = 45
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xo3rv"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+corner_radius_top_right = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up5hb"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+corner_radius_bottom_left = 75
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4otrc"]
+bg_color = Color(0.176349, 0.176349, 0.176349, 1)
+corner_radius_top_left = 10
+
+[node name="UI" type="CanvasLayer"]
+
+[node name="InGameUI" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="InGameUI"]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 32.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_t101g")
+
+[node name="Panel2" type="Panel" parent="InGameUI"]
+layout_mode = 0
+offset_top = 31.0
+offset_right = 197.0
+offset_bottom = 135.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_igss5")
+
+[node name="Panel3" type="Panel" parent="InGameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -154.0
+offset_top = 31.0
+offset_right = 155.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_2i865")
+
+[node name="Panel5" type="Panel" parent="InGameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -576.0
+offset_top = 416.0
+offset_right = -496.0
+offset_bottom = 648.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xo3rv")
+
+[node name="Panel6" type="Panel" parent="InGameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -500.0
+offset_top = 607.0
+offset_right = -196.0
+offset_bottom = 648.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_xo3rv")
+
+[node name="Panel4" type="Panel" parent="InGameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 345.0
+offset_top = 31.0
+offset_right = 576.0
+offset_bottom = 64.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_up5hb")
+
+[node name="Panel7" type="Panel" parent="InGameUI"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 212.0
+offset_top = 444.0
+offset_right = 576.0
+offset_bottom = 647.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_4otrc")

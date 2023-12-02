@@ -18,7 +18,7 @@ signal nav_mesh_changed
 func enter():
 	active = true
 	current_prop = prop_library_resource.scenes[current_prop_idx].instantiate()
-	add_child.call_deferred(current_prop)
+	current_scene.get_node("NavigationRegion3D").add_child.call_deferred(current_prop)
 
 func exit():
 	current_prop.queue_free()
@@ -38,13 +38,13 @@ func update(_delta: float):
 			current_prop_idx += 1
 			current_prop.queue_free()
 			current_prop = prop_library_resource.scenes[current_prop_idx].instantiate()
-			add_child(current_prop)
+			current_scene.get_node("NavigationRegion3D").add_child(current_prop)
 	elif Input.is_action_just_pressed("debug_change_prop_down"):
 		if current_prop_idx - 1 >= 0:
 			current_prop_idx -= 1
 			current_prop.queue_free()
 			current_prop = prop_library_resource.scenes[current_prop_idx].instantiate()
-			add_child(current_prop)
+			current_scene.get_node("NavigationRegion3D").add_child(current_prop)
 		
 
 func physics_update(_delta: float):

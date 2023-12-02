@@ -1,0 +1,7 @@
+[gd_scene load_steps=3 format=3 uid="uid://db4r65a4tdodq"]
+
+[ext_resource type="PackedScene" uid="uid://bhf2a5ob8tupx" path="res://Assets/Models/Props/wooden_table_1/wooden_table_1.glb" id="1_0a60g"]
+[ext_resource type="Script" path="res://Scripts/props_objects/wooden_table.gd" id="2_xg54q"]
+
+[node name="wooden_table_1" instance=ExtResource("1_0a60g")]
+script = ExtResource("2_xg54q")

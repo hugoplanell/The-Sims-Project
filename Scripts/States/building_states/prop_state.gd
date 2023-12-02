@@ -25,7 +25,7 @@ func exit():
 	active = false
 
 func update(_delta: float):
-	current_prop.position = mouse_position
+	if current_prop.is_hovered == false: current_prop.position = mouse_position
 	
 	if Input.is_action_just_pressed("debug_prop_rotate_left"):
 		current_prop.rotate_y(PI/4)
@@ -60,3 +60,4 @@ func _on_player_camera_mouse_position_3d(position):
 		
 		#mouse_position = floor(position + Vector3(0.5,1,0.5))
 		mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))
+

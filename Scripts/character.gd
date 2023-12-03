@@ -1,15 +1,5 @@
 extends CharacterBody3D
 
-"""
-TODO:
-	-Reorganizacion de codigo:
-		Lo que esta relacionado con el movimiento de este script que vaya a un Node hijo que sea MovementManager
-		de esta manera el Nodo Player solo gestiona el estado de control actual (en movimiento o construyendo) y
-		con una pequeña maquina de estados o directamente con una variable que se cambie de estado.
-	
-	- En el modo construccion hacer que cada vez que construyes se recalcula el navigation map
-"""
-
 const ACCEL = 10
 
 @onready var nav: NavigationAgent3D = $NavigationAgent3D

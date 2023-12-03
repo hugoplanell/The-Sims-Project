@@ -101,7 +101,7 @@ rings = 12
 environment = SubResource("Environment_ip18q")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="Lighting"]
-transform = Transform3D(-0.439939, -0.746247, -0.499569, 4.86329e-08, 0.556296, -0.830984, 0.898027, -0.365583, -0.244736, 0, 17, 0)
+transform = Transform3D(-0.439939, 0.820389, -0.365261, 0, 0.406737, 0.913545, 0.898027, 0.401905, -0.178939, 0, 17, 0)
 light_energy = 3.0
 shadow_enabled = true
 

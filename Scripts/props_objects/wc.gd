@@ -29,10 +29,10 @@ func _on_flush_button_pressed():
 	$AnimationPlayer.play("flush")
 
 func _on_open_lid_button_pressed():
-	$AnimationPlayer.play("open_lid")
+	if $AnimationPlayer.assigned_animation != "open_lid": $AnimationPlayer.play("open_lid")
 
 func _on_close_lid_button_pressed():
-	$AnimationPlayer.play("close_lid")
+	if $AnimationPlayer.assigned_animation != "close_lid": $AnimationPlayer.play("close_lid")
 
 func _on_area_3d_body_entered(body):
 	if body is CharacterBody3D:

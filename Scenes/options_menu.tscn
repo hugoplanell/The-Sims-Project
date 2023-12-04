@@ -1,0 +1,259 @@
+[gd_scene load_steps=7 format=3 uid="uid://bed7c5m0ens6n"]
+
+[ext_resource type="Texture2D" uid="uid://duq5rvia1yrlb" path="res://ultra.jpg" id="1_2na34"]
+[ext_resource type="Texture2D" uid="uid://w23ka83k7wye" path="res://settingimnages19.jpg" id="2_u3h5o"]
+[ext_resource type="Theme" uid="uid://nvlc6745kjh7" path="res://Assets/Themes/pause_menu.tres" id="3_un3mb"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4vdk"]
+bg_color = Color(0.752941, 0.772549, 0.819608, 1)
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_orq0d"]
+bg_color = Color(0.65098, 0.698039, 0.760784, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ujf1n"]
+bg_color = Color(0.65098, 0.698039, 0.760784, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Ultra" type="Sprite2D" parent="."]
+position = Vector2(557, 329)
+texture = ExtResource("1_2na34")
+
+[node name="Settingimnages19" type="Sprite2D" parent="."]
+position = Vector2(573, 323.25)
+scale = Vector2(1.20577, 1.20577)
+texture = ExtResource("2_u3h5o")
+
+[node name="GameOptions" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 209.0
+offset_top = 41.0
+offset_right = 940.0
+offset_bottom = 566.0
+theme = ExtResource("3_un3mb")
+
+[node name="Panel" type="Panel" parent="GameOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel2" type="Panel" parent="GameOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 478.0
+offset_right = -2.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_b4vdk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOptions"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 20
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/MarginContainer"]
+layout_mode = 2
+text = "Game Options"
+horizontal_alignment = 1
+
+[node name="CloseButton" type="Button" parent="GameOptions/VBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "X"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOptions/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(135, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="GameOptions/VBoxContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+text = "Graphics"
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameOptions/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_right = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_orq0d")
+text = "Display"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 55
+theme_override_constants/margin_bottom = 25
+
+[node name="GridContainer" type="GridContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 95
+theme_override_constants/v_separation = 30
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Display Type:"
+vertical_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Windowed Fullscreen"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Refresh Rate:"
+vertical_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer2"]
+layout_mode = 2
+text = "Default"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Resolution:"
+vertical_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer3"]
+layout_mode = 2
+text = "1920x1080"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Display Type:"
+vertical_alignment = 1
+
+[node name="CheckButton" type="CheckButton" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer/GridContainer/HBoxContainer4"]
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 11
+theme_override_styles/normal = SubResource("StyleBoxFlat_ujf1n")
+text = "Graphics"
+horizontal_alignment = 1
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 95
+theme_override_constants/margin_top = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Graphics Quality::"
+vertical_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+text = "Ultra"
+alignment = 0
+
+[node name="GridContainer" type="GridContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/h_separation = 95
+theme_override_constants/v_separation = 30
+columns = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer/GridContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer/GridContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Empty"
+vertical_alignment = 1
+
+[node name="MenuButton" type="MenuButton" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer/GridContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+text = "Empty"
+
+[node name="MarginContainer2" type="MarginContainer" parent="GameOptions/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="GameOptions/VBoxContainer/MarginContainer2"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+theme_override_constants/separation = 170
+
+[node name="Button" type="Button" parent="GameOptions/VBoxContainer/MarginContainer2/HBoxContainer2"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Restore Defaults"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="GameOptions/VBoxContainer/MarginContainer2/HBoxContainer2"]
+layout_mode = 2
+alignment = 2
+
+[node name="Button2" type="Button" parent="GameOptions/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Revert Changes"
+
+[node name="Button3" type="Button" parent="GameOptions/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(180, 0)
+layout_mode = 2
+text = "Apply Changes"

@@ -22,7 +22,7 @@ func enter():
 	add_child.call_deferred(current_prop_reference)
 
 func exit():
-	current_prop.queue_free()
+	current_prop_reference.queue_free()
 	active = false
 
 func update(_delta: float):
@@ -58,6 +58,7 @@ func _on_player_camera_mouse_position_3d(position):
 		if Input.is_action_just_pressed("left_click"):
 			current_prop = current_prop_reference.duplicate()
 			#current_prop_reference.queue_free()
+			current_prop.is_placed = true
 			current_scene.get_node("NavigationRegion3D").add_child(current_prop)
 			nav_mesh_changed.emit()
 			

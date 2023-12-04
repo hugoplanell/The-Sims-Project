@@ -6,7 +6,7 @@ const ACCEL = 10
 @onready var anim_tree : AnimationTree = $AnimationTree
 @onready var playback : AnimationNodeStateMachinePlayback = anim_tree.get("parameters/playback")
 
-var anim_player : AnimationPlayer
+var current_action_object : Prop3D
 
 var SPEED = 2.0
 
@@ -16,10 +16,8 @@ var is_running = false
 
 func _ready():
 	#Global.character_node = self # esto se deberia de quitar si hay mas de un character
+	pass
 	
-	anim_player = $character_1.get_node("AnimationPlayer")
-	anim_player.play("walk")
-
 func _process(delta):
 	"""
 	anim_tree.set("parameters/conditions/idle", velocity.length() < 0.25)

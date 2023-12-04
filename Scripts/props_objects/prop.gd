@@ -3,6 +3,7 @@ extends Node3D
 
 var body : StaticBody3D
 var is_hovered = false
+var is_placed = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -13,8 +14,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if is_hovered:
-		print("hovered")
+	pass
 
 func _on_mouse_entered():
 	is_hovered = true

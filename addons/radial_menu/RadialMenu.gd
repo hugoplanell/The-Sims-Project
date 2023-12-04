@@ -1,4 +1,5 @@
 @tool
+class_name RadialMenu
 extends Container
 
 signal hovered(child)

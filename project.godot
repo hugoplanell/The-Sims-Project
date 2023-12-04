@@ -28,7 +28,7 @@ movie_writer/movie_file="/home/hugo/Documentos/GitHub/The-Sims-Project/Movies/1.
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/panku_console/plugin.cfg")
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/panku_console/plugin.cfg", "res://addons/radial_menu/plugin.cfg")
 
 [filesystem]
 

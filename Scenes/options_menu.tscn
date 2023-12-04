@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bed7c5m0ens6n"]
+[gd_scene load_steps=8 format=3 uid="uid://bed7c5m0ens6n"]
 
 [ext_resource type="Texture2D" uid="uid://duq5rvia1yrlb" path="res://ultra.jpg" id="1_2na34"]
 [ext_resource type="Texture2D" uid="uid://w23ka83k7wye" path="res://settingimnages19.jpg" id="2_u3h5o"]
 [ext_resource type="Theme" uid="uid://nvlc6745kjh7" path="res://Assets/Themes/pause_menu.tres" id="3_un3mb"]
+[ext_resource type="Script" path="res://Scripts/GameOptions.gd" id="4_lcr5b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b4vdk"]
 bg_color = Color(0.752941, 0.772549, 0.819608, 1)
@@ -39,6 +40,7 @@ offset_top = 41.0
 offset_right = 940.0
 offset_bottom = 566.0
 theme = ExtResource("3_un3mb")
+script = ExtResource("4_lcr5b")
 
 [node name="Panel" type="Panel" parent="GameOptions"]
 layout_mode = 1
@@ -206,6 +208,13 @@ custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 text = "Ultra"
 alignment = 0
+item_count = 3
+popup/item_0/text = "Low"
+popup/item_0/id = 0
+popup/item_1/text = "Mid"
+popup/item_1/id = 1
+popup/item_2/text = "High"
+popup/item_2/id = 2
 
 [node name="GridContainer" type="GridContainer" parent="GameOptions/VBoxContainer/HBoxContainer/MarginContainer2/VBoxContainer/MarginContainer2/VBoxContainer"]
 layout_mode = 2

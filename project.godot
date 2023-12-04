@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 Global="*res://Scripts/global.gd"
 DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
 Panku="*res://addons/panku_console/console.tscn"
+Graphics="*res://Scripts/graphics.gd"
 
 [editor]
 

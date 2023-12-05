@@ -17,7 +17,7 @@ func _process(delta):
 		print("do pooping action")
 	
 	if Input.is_action_just_pressed("left_click"):
-			if is_hovered and is_placed:
+			if is_hovered and is_placed and radial_menu == null:
 				create_radial_menu()
 			elif radial_menu != null:
 				radial_menu.queue_free()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://7b7dokedkh24"]
+[gd_scene load_steps=11 format=3 uid="uid://7b7dokedkh24"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1kbvs"]
 [ext_resource type="PackedScene" uid="uid://30bn6ns6kqaj" path="res://Scenes/player_camera.tscn" id="1_22vn5"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/States/building_states/wall_state.gd" id="7_e6ieu"]
 [ext_resource type="Script" path="res://Scripts/States/building_states/ground_state.gd" id="8_oc8lq"]
 [ext_resource type="Script" path="res://Scripts/States/prop_states/wc_state.gd" id="9_8b1q7"]
+[ext_resource type="PackedScene" uid="uid://ek6qrvnuva1" path="res://Assets/Models/Props/wc_1/wc_1.tscn" id="10_mdsh1"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_1kbvs")
@@ -34,6 +35,7 @@ script = ExtResource("8_oc8lq")
 
 [node name="WcBuilding" type="Node" parent="StateManager/BuildingManager"]
 script = ExtResource("9_8b1q7")
+prop_scene = ExtResource("10_mdsh1")
 
 [connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/CharacterManager" method="_on_player_camera_mouse_position_3d"]
 [connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/WallBuilding" method="_on_player_camera_mouse_position_3d"]

@@ -24,8 +24,9 @@ script = ExtResource("4_i1uqe")
 [node name="CharacterManager" type="Node" parent="StateManager"]
 script = ExtResource("4_0ux48")
 
-[node name="BuildingManager" type="Node" parent="StateManager"]
+[node name="BuildingManager" type="Node" parent="StateManager" node_paths=PackedStringArray("initial_state")]
 script = ExtResource("5_e5tqw")
+initial_state = NodePath("WallBuilding")
 
 [node name="WallBuilding" type="Node" parent="StateManager/BuildingManager"]
 script = ExtResource("7_e6ieu")

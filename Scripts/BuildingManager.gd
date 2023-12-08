@@ -21,7 +21,7 @@ func _ready():
 
 func enter():
 	active = true
-	
+
 	if initial_state:
 		initial_state.enter()
 		current_state = initial_state

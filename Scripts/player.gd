@@ -17,12 +17,24 @@ func _process(delta):
 			$StateManager.on_state_transition(CHARACTER_MODE)
 			
 	if state == BUILDING_MODE:
-		if Input.is_action_just_pressed("debug_building_1"):
-			$StateManager/BuildingManager._on_child_transition("WallBuilding")
+		var building_states : Array = $StateManager/BuildingManager.states
+		var current_building_state : State = $StateManager/BuildingManager.current_state
+		var current_state_idx = building_states.find(current_building_state)
+		
+		if Input.is_action_just_pressed("debug_change_prop_up"):
+			if current_state_idx + 1 < building_states.size():
+				$StateManager/BuildingManager._on_child_transition_by_idx(current_state_idx + 1)
+		
+		if Input.is_action_just_pressed("debug_change_prop_down"):
+			if current_state_idx - 1 >= 0:
+				$StateManager/BuildingManager._on_child_transition_by_idx(current_state_idx - 1)
+		
+		"""if Input.is_action_just_pressed("debug_building_1"):
+			$StateManager/BuildingManager._on_child_transition_by_name("WallBuilding")
 		elif Input.is_action_just_pressed("debug_building_2"):
-			$StateManager/BuildingManager._on_child_transition("GroundBuilding")
+			$StateManager/BuildingManager._on_child_transition_by_name("GroundBuilding")
 		elif Input.is_action_just_pressed("debug_building_3"):
-			$StateManager/BuildingManager._on_child_transition("WcBuilding")
+			$StateManager/BuildingManager._on_child_transition_by_name("WcBuilding")"""
 
 func _physics_process(delta):
 	pass

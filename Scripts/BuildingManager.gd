@@ -3,7 +3,11 @@ extends Node
 @export var initial_state_idx : int
 
 var current_state : State
-var states : Array[State]
+var current_state_idx
+
+@export var builders_list : Resource
+
+@onready var states : Array = builders_list.builders
 
 enum BuildingMode {BUILD, REMOVE}
 
@@ -14,26 +18,24 @@ var hovering_object : BuildingObject3D = null
 var active: bool = false
 
 func _ready():
-	for child in get_children():
-		if child is State:
-			states.append(child)
-			child.transitioned.connect(_on_child_transition_by_name)
+	pass
+	#child.transitioned.connect(_on_child_transition_by_name)
 
 func enter():
 	active = true
 
 	if initial_state_idx != null:
-		states[initial_state_idx].enter()
-		current_state = states[initial_state_idx]
+		current_state_idx = initial_state_idx
+		current_state = states[initial_state_idx].new()
+		$"../../PlayerCamera".connect("mouse_position_3d", current_state._on_player_camera_mouse_position_3d)
+		add_child(current_state)
 
 func exit():
 	active = false
-	current_state.exit()
+	current_state.queue_free()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func update(_delta: float):
-	if current_state:
-		current_state.update(_delta)
 	
 	if Input.is_action_just_pressed("debug_switch_building_mode"):
 		if current_building_mode == BuildingMode.BUILD:
@@ -46,12 +48,12 @@ func update(_delta: float):
 			print("Build Mode")
 
 func physics_update(_delta: float):
-	if current_state:
-		current_state.physics_update(_delta)
+	pass
 
+#Mucho mas lento que por indice!!!
 func _on_child_transition_by_name(new_state_name):
 	if new_state_name == null:
-		current_state.exit()
+		current_state.queue_free()
 		current_state = null
 		return
 	
@@ -60,16 +62,18 @@ func _on_child_transition_by_name(new_state_name):
 		return
 		
 	if current_state:
-		current_state.exit()
-		
-	new_state.enter()
+		current_state.queue_free()
 	
-	current_state = new_state
+	current_state = new_state.new()
+	current_state_idx = states.find(new_state)
+	$"../../PlayerCamera".connect("mouse_position_3d", current_state._on_player_camera_mouse_position_3d)
+	add_child(current_state)
 
 func _on_child_transition_by_idx(new_state_idx):
 	if new_state_idx == null:
-		current_state.exit()
+		current_state.queue_free()
 		current_state = null
+		current_state_idx = null
 		return
 	
 	var new_state = states[new_state_idx]
@@ -77,16 +81,21 @@ func _on_child_transition_by_idx(new_state_idx):
 		return
 		
 	if current_state:
-		current_state.exit()
+		current_state.queue_free()
+		current_state_idx = null
 		
-	new_state.enter()
-	
-	current_state = new_state
+	current_state = new_state.new()
+	current_state_idx = states.find(new_state)
+	$"../../PlayerCamera".connect("mouse_position_3d", current_state._on_player_camera_mouse_position_3d)
+	add_child(current_state)
 
 func get_state_by_name(name: String):
 	for state in states:
-		if state.name.to_lower() == name.to_lower():
+		var state_node = state.new()
+		if state_node.name.to_lower() == name.to_lower():
+			state_node.queue_free()
 			return state
+		state_node.queue_free()
 
 func _on_player_camera_object_hovered(object):
 	if active:

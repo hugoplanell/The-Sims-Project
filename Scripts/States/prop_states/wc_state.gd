@@ -1,14 +1,16 @@
 class_name WcBuilding
 extends PropState
 
-func enter():
+
+func _ready():
+	prop_scene = preload("res://Assets/Models/Props/wc_1/wc_1.tscn")
 	super()
-
-func exit():
+	
+func _exit_tree():
 	super()
+	
+func _process(delta):
+	super(delta)
 
-func update(_delta: float):
-	super(_delta)
-
-func physics_update(_delta: float):
-	super(_delta)
+func _physics_process(delta):
+	super(delta)

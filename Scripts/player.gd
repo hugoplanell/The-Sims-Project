@@ -19,7 +19,7 @@ func _process(delta):
 	if state == BUILDING_MODE:
 		var building_states : Array = $StateManager/BuildingManager.states
 		var current_building_state : State = $StateManager/BuildingManager.current_state
-		var current_state_idx = building_states.find(current_building_state)
+		var current_state_idx = $StateManager/BuildingManager.current_state_idx
 		
 		if Input.is_action_just_pressed("debug_change_prop_up"):
 			if current_state_idx + 1 < building_states.size():

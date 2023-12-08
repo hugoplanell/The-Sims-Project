@@ -13,22 +13,18 @@ var temp_reference_cube : CSGBox3D
 
 var mouse_position : Vector3 = Vector3.ZERO
 
-var active: bool = false
-
 signal nav_mesh_changed
 
-func enter():
-	active = true
+func _ready():
 	temp_reference_cube = CSGBox3D.new()
 	temp_reference_cube.position = mouse_position
 	temp_reference_cube.size = Vector3(1,GROUND_THICKNESS,1)
 	add_child(temp_reference_cube)
 
-func exit():
-	active = false
+func _exit_tree():
 	temp_reference_cube.queue_free()
 
-func update(_delta: float):
+func _process(delta):
 	temp_reference_cube.position = Vector3((mouse_position.x + 0.5), mouse_position.y, (mouse_position.z + 0.5))
 	#current_scene.get_node("Lighting").get_node("VoxelGI").bake()
 	
@@ -63,25 +59,24 @@ func update(_delta: float):
 			reset_building()
 	
 	
-func physics_update(_delta: float):
+func _physics_process(delta):
 	#print("building_physics_update")
 	pass
 
 
 func _on_player_camera_mouse_position_3d(position):
-	if active:
-		if Input.is_action_just_pressed("left_click"):
-			if arr[0] == null:
-				arr[0] = mouse_position
-				print("first-stage")
-			elif arr[1] == null:
-				arr[1] = mouse_position
-				print("second-stage")
-				build_ready = true
-		
-		#$CSGMesh3D.position = floor(position + Vector3(0.5,1,0.5))
-		#mouse_position = floor(position + Vector3(0.5,1,0.5))
-		mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))
+	if Input.is_action_just_pressed("left_click"):
+		if arr[0] == null:
+			arr[0] = mouse_position
+			print("first-stage")
+		elif arr[1] == null:
+			arr[1] = mouse_position
+			print("second-stage")
+			build_ready = true
+	
+	#$CSGMesh3D.position = floor(position + Vector3(0.5,1,0.5))
+	#mouse_position = floor(position + Vector3(0.5,1,0.5))
+	mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))
 
 func reset_building():
 	arr.clear()

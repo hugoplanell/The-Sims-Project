@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BuildersList" load_steps=6 format=3 uid="uid://ddqj2x063m82s"]
+
+[ext_resource type="Script" path="res://Scripts/States/building_states/wall_state.gd" id="1_0h7x5"]
+[ext_resource type="Script" path="res://Scripts/States/builders_list.gd" id="1_7rcuj"]
+[ext_resource type="Script" path="res://Scripts/States/building_states/ground_state.gd" id="2_2yqto"]
+[ext_resource type="Script" path="res://Scripts/States/prop_states/wc_state.gd" id="3_riysy"]
+[ext_resource type="Script" path="res://Scripts/States/prop_states/table_state.gd" id="4_nokvs"]
+
+[resource]
+script = ExtResource("1_7rcuj")
+builders = Array[Resource]([ExtResource("1_0h7x5"), ExtResource("2_2yqto"), ExtResource("3_riysy"), ExtResource("4_nokvs")])

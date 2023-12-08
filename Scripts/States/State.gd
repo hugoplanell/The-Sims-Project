@@ -3,14 +3,15 @@ extends Node
 
 signal transitioned(new_state)
 
-func enter():
+
+func _ready():
 	pass
 	
-func exit():
+func _exit_tree():
 	pass
 	
-func update(_delta: float):
+func _process(delta):
 	pass
 
-func physics_update(_delta: float):
+func _physics_process(delta):
 	pass

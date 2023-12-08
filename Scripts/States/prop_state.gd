@@ -33,20 +33,6 @@ func update(_delta: float):
 	
 	if Input.is_action_just_pressed("debug_prop_rotate_right"):
 		prop_reference.rotate_y(-PI/4)
-	
-"""	if Input.is_action_just_pressed("debug_change_prop_up"):
-		if current_prop_idx + 1 < prop_library_resource.scenes.size():
-			current_prop_idx += 1
-			current_prop_reference.queue_free()
-			current_prop_reference = prop_library_resource.scenes[current_prop_idx].instantiate()
-			add_child(current_prop_reference)
-	elif Input.is_action_just_pressed("debug_change_prop_down"):
-		if current_prop_idx - 1 >= 0:
-			current_prop_idx -= 1
-			current_prop_reference.queue_free()
-			current_prop_reference = prop_library_resource.scenes[current_prop_idx].instantiate()
-			add_child(current_prop_reference)"""
-		
 
 func physics_update(_delta: float):
 	#print("building_physics_update")

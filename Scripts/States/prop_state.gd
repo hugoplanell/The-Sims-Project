@@ -1,11 +1,11 @@
-class_name PropBuildingState
+class_name PropState
 extends State
 
 @onready var current_scene = get_tree().get_current_scene() #mirar mejores formas de hacer esto(valorar un global)
-@export var prop_library_resource : PropLibrary
+var prop_library_resource = preload("res://Scripts/props_objects/prop_library.tres")
 
 var current_prop = null
-var current_prop_idx : int = 0
+var current_prop_idx : int
 
 var current_prop_reference = null
 
@@ -35,7 +35,7 @@ func update(_delta: float):
 	if Input.is_action_just_pressed("debug_prop_rotate_right"):
 		current_prop_reference.rotate_y(-PI/4)
 	
-	if Input.is_action_just_pressed("debug_change_prop_up"):
+"""	if Input.is_action_just_pressed("debug_change_prop_up"):
 		if current_prop_idx + 1 < prop_library_resource.scenes.size():
 			current_prop_idx += 1
 			current_prop_reference.queue_free()
@@ -46,7 +46,7 @@ func update(_delta: float):
 			current_prop_idx -= 1
 			current_prop_reference.queue_free()
 			current_prop_reference = prop_library_resource.scenes[current_prop_idx].instantiate()
-			add_child(current_prop_reference)
+			add_child(current_prop_reference)"""
 		
 
 func physics_update(_delta: float):

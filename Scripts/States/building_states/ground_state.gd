@@ -1,5 +1,5 @@
-class_name GroundBuildingState
-extends State
+class_name GroundBuilding
+extends BuildingState
 
 const GROUND_THICKNESS = 0.2
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://7b7dokedkh24"]
+[gd_scene load_steps=10 format=3 uid="uid://7b7dokedkh24"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_1kbvs"]
 [ext_resource type="PackedScene" uid="uid://30bn6ns6kqaj" path="res://Scenes/player_camera.tscn" id="1_22vn5"]
@@ -6,10 +6,9 @@
 [ext_resource type="Script" path="res://Scripts/CharacterManager.gd" id="4_0ux48"]
 [ext_resource type="Script" path="res://Scripts/PlayerStateManager.gd" id="4_i1uqe"]
 [ext_resource type="Script" path="res://Scripts/BuildingManager.gd" id="5_e5tqw"]
-[ext_resource type="Script" path="res://Scripts/States/building_states/wall_state.gd" id="6_w2clr"]
-[ext_resource type="Script" path="res://Scripts/States/building_states/ground_state.gd" id="7_idgyi"]
-[ext_resource type="Script" path="res://Scripts/States/building_states/prop_state.gd" id="8_y5xga"]
-[ext_resource type="Resource" uid="uid://bufuc35nja2jf" path="res://Scripts/props_objects/prop_library.tres" id="9_3yubx"]
+[ext_resource type="Script" path="res://Scripts/States/building_states/wall_state.gd" id="7_e6ieu"]
+[ext_resource type="Script" path="res://Scripts/States/building_states/ground_state.gd" id="8_oc8lq"]
+[ext_resource type="Script" path="res://Scripts/States/prop_states/wc_state.gd" id="9_8b1q7"]
 
 [node name="Player" type="Node3D"]
 script = ExtResource("1_1kbvs")
@@ -24,22 +23,20 @@ script = ExtResource("4_i1uqe")
 [node name="CharacterManager" type="Node" parent="StateManager"]
 script = ExtResource("4_0ux48")
 
-[node name="BuildingManager" type="Node" parent="StateManager" node_paths=PackedStringArray("initial_state")]
+[node name="BuildingManager" type="Node" parent="StateManager"]
 script = ExtResource("5_e5tqw")
-initial_state = NodePath("Prop")
 
-[node name="Wall" type="Node" parent="StateManager/BuildingManager"]
-script = ExtResource("6_w2clr")
+[node name="WallBuilding" type="Node" parent="StateManager/BuildingManager"]
+script = ExtResource("7_e6ieu")
 
-[node name="Ground" type="Node" parent="StateManager/BuildingManager"]
-script = ExtResource("7_idgyi")
+[node name="GroundBuilding" type="Node" parent="StateManager/BuildingManager"]
+script = ExtResource("8_oc8lq")
 
-[node name="Prop" type="Node" parent="StateManager/BuildingManager"]
-script = ExtResource("8_y5xga")
-prop_library_resource = ExtResource("9_3yubx")
+[node name="WcBuilding" type="Node" parent="StateManager/BuildingManager"]
+script = ExtResource("9_8b1q7")
 
 [connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/CharacterManager" method="_on_player_camera_mouse_position_3d"]
-[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/Wall" method="_on_player_camera_mouse_position_3d"]
-[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/Ground" method="_on_player_camera_mouse_position_3d"]
-[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/Prop" method="_on_player_camera_mouse_position_3d"]
+[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/WallBuilding" method="_on_player_camera_mouse_position_3d"]
+[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/GroundBuilding" method="_on_player_camera_mouse_position_3d"]
+[connection signal="mouse_position_3d" from="PlayerCamera" to="StateManager/BuildingManager/WcBuilding" method="_on_player_camera_mouse_position_3d"]
 [connection signal="object_hovered" from="PlayerCamera" to="StateManager/BuildingManager" method="_on_player_camera_object_hovered"]

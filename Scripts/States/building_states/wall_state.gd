@@ -1,5 +1,5 @@
-class_name WallBuildingState
-extends State
+class_name WallBuilding
+extends BuildingState
 
 const WALL_HEIGHT = 3
 const WALL_THICKNESS = 0.2

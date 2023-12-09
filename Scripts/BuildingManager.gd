@@ -27,7 +27,7 @@ func enter():
 	if initial_state_idx != null:
 		current_state_idx = initial_state_idx
 		current_state = states[initial_state_idx].new()
-		$"../../PlayerCamera".connect("mouse_position_3d", current_state._on_player_camera_mouse_position_3d)
+		$"../../PlayerCamera".connect("mouse_3d", current_state._on_player_camera_mouse_3d)
 		add_child(current_state)
 
 func exit():
@@ -66,7 +66,7 @@ func _on_child_transition_by_name(new_state_name):
 	
 	current_state = new_state.new()
 	current_state_idx = states.find(new_state)
-	$"../../PlayerCamera".connect("mouse_position_3d", current_state._on_player_camera_mouse_position_3d)
+	$"../../PlayerCamera".connect("mouse_3d", current_state._on_player_camera_mouse_3d)
 	add_child(current_state)
 
 func _on_child_transition_by_idx(new_state_idx):
@@ -86,7 +86,7 @@ func _on_child_transition_by_idx(new_state_idx):
 		
 	current_state = new_state.new()
 	current_state_idx = states.find(new_state)
-	$"../../PlayerCamera".connect("mouse_position_3d", current_state._on_player_camera_mouse_position_3d)
+	$"../../PlayerCamera".connect("mouse_3d", current_state._on_player_camera_mouse_3d)
 	add_child(current_state)
 
 func get_state_by_name(name: String):
@@ -97,17 +97,18 @@ func get_state_by_name(name: String):
 			return state
 		state_node.queue_free()
 
-func _on_player_camera_object_hovered(object):
+func _on_player_camera_mouse_3d(position, body):
 	if active:
 		if current_building_mode == BuildingMode.REMOVE:
-			if hovering_object and object:
-				if hovering_object != object:
-					hovering_object.is_hovered = false
-					hovering_object = object
-					hovering_object.is_hovered = true
-			elif !hovering_object and object:
-					hovering_object = object
-					hovering_object.is_hovered = true
-			elif hovering_object and !object:
+			if body is BuildingObject3D:
+				if hovering_object and body:
+					if hovering_object != body:
+						hovering_object.is_hovered = false
+						hovering_object = body
+						hovering_object.is_hovered = true
+				elif !hovering_object and body:
+						hovering_object = body
+						hovering_object.is_hovered = true
+			elif hovering_object:
 				if hovering_object != null: hovering_object.is_hovered = false
 				hovering_object = null

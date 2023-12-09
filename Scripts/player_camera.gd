@@ -5,10 +5,7 @@ var mouse_speed : Vector2
 var camera_panning = false
 @export var panning_speed:float = 1.0
 
-signal mouse_position_3d(position)
-signal object_hovered(object)
-
-var mouse_pos_3d
+signal mouse_3d(position, body)
 
 func _process(delta):
 	#reset mouse_speed when mouse is not moving
@@ -52,12 +49,6 @@ func mouse_raycast(delta: float):
 	var intersection = space_state.intersect_ray(raycast)
 	
 	if !intersection.is_empty():
-		mouse_position_3d.emit(intersection.position)
-		mouse_pos_3d = intersection.position
-		
-		if intersection.collider is BuildingObject3D:
-			object_hovered.emit(intersection.collider)
-		else:
-			object_hovered.emit(null)
+		mouse_3d.emit(intersection.position, intersection.collider)
 
 

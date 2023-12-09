@@ -32,9 +32,9 @@ func physics_update(_delta: float):
 	pass
 
 
-func _on_player_camera_mouse_position_3d(position):
+func _on_player_camera_mouse_position_3d(position, body):
 	if Global.character_node != null and active: #mejorar esto
-		if !Global.character_node.is_hovered:
+		if body is CSGShape3D:
 			mouse_target.position = position
 			
 			if Input.is_action_just_pressed("left_click"):

@@ -10,7 +10,6 @@ var current_action_object : Prop3D
 
 var SPEED = 2.0
 
-var is_hovered = false
 var is_picked = false
 var is_running = false
 
@@ -70,13 +69,3 @@ func _on_input_event(camera, event, position, normal, shape_idx):
 			Global.character_node = self
 		else:
 			is_picked = true
-		
-
-func _on_mouse_entered():
-	is_hovered = true
-
-func _on_mouse_exited():
-	is_hovered = false
-
-
-

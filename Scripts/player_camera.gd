@@ -13,12 +13,16 @@ func _process(delta):
 	
 func _physics_process(delta):
 
-	mouse_raycast(delta)
+	#mouse_raycast(delta)
 	camera_pan(delta)
 
 func _input(event):
+	pass
+
+func _unhandled_input(event):
 	if event is InputEventMouseMotion:
 		mouse_speed = event.relative
+	mouse_raycast()
 
 func camera_pan(delta: float):
 	var angle = (self.global_rotation.y + $CameraTracker/Camera3D.global_rotation.y)
@@ -38,7 +42,7 @@ func camera_pan(delta: float):
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 		camera_panning = false
 		
-func mouse_raycast(delta: float):
+func mouse_raycast():
 	var space_state = get_world_3d().direct_space_state
 	
 	var from = $CameraTracker/Camera3D.project_ray_origin(get_viewport().get_mouse_position())

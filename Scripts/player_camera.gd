@@ -13,11 +13,7 @@ func _process(delta):
 	
 func _physics_process(delta):
 
-	#mouse_raycast(delta)
 	camera_pan(delta)
-
-func _input(event):
-	pass
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:

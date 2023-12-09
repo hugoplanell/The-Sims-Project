@@ -14,7 +14,13 @@ func _process(delta):
 	super(delta)
 	
 	if character_action == true:
-		print("do pooping action")
+		if Global.character_node.velocity.length() == 0:
+			var a = Quaternion(Global.character_node.transform.basis)
+			var b = Quaternion(self.transform.basis)
+			#if !is_equal_approx(a,b):
+			Global.character_node.transform.basis = Basis(a.slerp(b,0.1))
+			Global.character_node.playback.start("poop")
+			print("do pooping action")
 	
 	if Input.is_action_just_pressed("left_click"):
 			if is_hovered and is_placed and radial_menu == null:
@@ -38,7 +44,6 @@ func _on_area_3d_body_entered(body):
 	if body is CharacterBody3D:
 		#body.get_node("CollisionShape3D").disabled = true
 		character_action = true
-		body.playback.start("poop")
 
 func create_radial_menu():
 	radial_menu = RadialMenu.new()

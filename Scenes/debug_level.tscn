@@ -47,7 +47,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.50157, 0)
 navigation_mesh = SubResource("NavigationMesh_wc0o4")
 script = ExtResource("4_jc3f4")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D"]
+[node name="CSGBox3D" type="CSGBox3D" parent="NavigationRegion3D" groups=["walkable"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0157099, 0.0296545, -0.0104361)
 use_collision = true
 size = Vector3(50, 1, 50)

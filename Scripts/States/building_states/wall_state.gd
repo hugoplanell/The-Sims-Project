@@ -80,15 +80,15 @@ func _process(delta):
 		var p0 = Vector3(arr[0])
 		var p1 = Vector3(mouse_position)
 		
-		var p0_v2 = Vector2(p0.x, p0.z).normalized()
-		var p1_v2 = Vector2(p1.x, p1.z).normalized()
+		var p0_v2 = Vector2(p0.x, p0.z)
+		var p1_v2 = Vector2(p1.x, p1.z)
 		
-		var angle = p0_v2.angle_to(p1_v2)
-		angle = atan2(p1_v2.x, p1_v2.y)
+		var angle = Vector2.LEFT.angle_to(p1_v2 - p0_v2)
+		print(-angle)
 		
-		temp_reference_cube.rotation.y = (angle)
-		#temp_reference_cube.position = Vector3(p0.x + (p1.x -p0.x) / 2,p0.y,p0.z)
-		temp_reference_cube.position = Vector3(p0.x,p0.y,p0.z)
+		temp_reference_cube.rotation.y = (-angle)
+		temp_reference_cube.position = Vector3(p0.x + (p1.x -p0.x) / 2,p0.y,p0.z + (p1.z -p0.z) / 2)
+		#temp_reference_cube.position = Vector3(p0.x,p0.y,p0.z)
 		#temp_reference_cube.position = Vector3(p0.x + cos(angle) * (p1.x -p0.x) / 2,p0.y,p0.z + sin(angle) * (p1.z -p0.z) / 2)
 		temp_reference_cube.size = Vector3(abs(p0.distance_to(p1)),WALL_HEIGHT,WALL_THICKNESS)
 		

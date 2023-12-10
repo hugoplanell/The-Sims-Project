@@ -34,66 +34,35 @@ func _process(delta):
 		wall.material = wall_material
 		#wall.material = wall_material.duplicate()
 		#wall.material.albedo_color = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
-		"""
-		var size_x = (arr[1].x - arr[0].x)
-		var size_z = (arr[1].z - arr[0].z)
 		
-		if abs(size_x) > abs(size_z):
-			wall.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z)
-			wall.size = Vector3(abs(size_x),WALL_HEIGHT,WALL_THICKNESS)
-		else:
-			wall.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
-			wall.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
-		"""
-		
-		var p0 = Vector3(arr[0])
-		var p1 = Vector3(arr[1])
-		
-		print(p0.angle_to(p1))
-		wall.position = Vector3(arr[0].x + (arr[1].x - arr[0].x) / 2,arr[0].y,arr[0].z + (arr[1].z - arr[0].z) / 2)
-		wall.rotate_y(p0.angle_to(p1)/2)
-		wall.size = Vector3(abs(p0.distance_to(p1)),WALL_HEIGHT,WALL_THICKNESS)
-		
+		transform_wall(wall, arr[0], arr[1])
 		wall.use_collision = true
 		
 		current_scene.get_node("NavigationRegion3D").add_child(wall)
 		
 		#current_scene.get_node("NavigationRegion3D").bake_navigation_mesh()
-		
 		nav_mesh_changed.emit()
 		
 		reset_building()
 	
 	if arr[0]:
-		"""
-		var size_x = (mouse_position.x - arr[0].x)
-		var size_z = (mouse_position.z - arr[0].z)
-		
-		if abs(size_x) > abs(size_z):
-			temp_reference_cube.position = Vector3(arr[0].x + size_x / 2,arr[0].y,arr[0].z)
-			temp_reference_cube.size = Vector3(abs(size_x),WALL_HEIGHT,WALL_THICKNESS)
-		else:
-			temp_reference_cube.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
-			temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
-		"""
-		
-		var p0 = Vector3(arr[0])
-		var p1 = Vector3(mouse_position)
-		
-		var p0_v2 = Vector2(p0.x, p0.z)
-		var p1_v2 = Vector2(p1.x, p1.z)
-		
-		var angle = Vector2.LEFT.angle_to(p1_v2 - p0_v2)
-		print(-angle)
-		
-		temp_reference_cube.rotation.y = (-angle)
-		temp_reference_cube.position = Vector3(p0.x + (p1.x -p0.x) / 2,p0.y,p0.z + (p1.z -p0.z) / 2)
-		#temp_reference_cube.position = Vector3(p0.x,p0.y,p0.z)
-		#temp_reference_cube.position = Vector3(p0.x + cos(angle) * (p1.x -p0.x) / 2,p0.y,p0.z + sin(angle) * (p1.z -p0.z) / 2)
-		temp_reference_cube.size = Vector3(abs(p0.distance_to(p1)),WALL_HEIGHT,WALL_THICKNESS)
+		transform_wall(temp_reference_cube, arr[0], mouse_position)
 		
 		if Input.is_action_just_pressed("right_click"):
 			reset_building()
+
+func transform_wall(wall, first_pos, last_pos):
+	
+	var wall_size : Vector3 = Vector3(last_pos.x - arr[0].x, 1, last_pos.z - arr[0].z)
+	
+	var first_pos_v2 = Vector2(first_pos.x, first_pos.z)
+	var last_pos_v2 = Vector2(last_pos.x, last_pos.z)
+
+	var angle = Vector2.LEFT.angle_to(first_pos_v2 - last_pos_v2)
+	
+	wall.rotation.y = (-angle)
+	wall.position = Vector3(first_pos.x + (last_pos.x -first_pos.x) / 2,first_pos.y,first_pos.z + (last_pos.z -first_pos.z) / 2)
+	wall.size = Vector3(first_pos.distance_to(last_pos),WALL_HEIGHT,WALL_THICKNESS)
 
 func _physics_process(delta):
 	#print("building_physics_update")

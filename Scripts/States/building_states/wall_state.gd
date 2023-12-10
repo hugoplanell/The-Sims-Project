@@ -34,7 +34,7 @@ func _process(delta):
 		wall.material = wall_material
 		#wall.material = wall_material.duplicate()
 		#wall.material.albedo_color = Color.from_hsv((randi() % 12) / 12.0, 1, 1)
-		
+		"""
 		var size_x = (arr[1].x - arr[0].x)
 		var size_z = (arr[1].z - arr[0].z)
 		
@@ -44,6 +44,16 @@ func _process(delta):
 		else:
 			wall.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
 			wall.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
+		"""
+		
+		var p0 = Vector3(arr[0])
+		var p1 = Vector3(arr[1])
+		
+		print(p0.angle_to(p1))
+		wall.position = Vector3(arr[0].x + (arr[1].x - arr[0].x) / 2,arr[0].y,arr[0].z + (arr[1].z - arr[0].z) / 2)
+		wall.rotate_y(p0.angle_to(p1)/2)
+		wall.size = Vector3(abs(p0.distance_to(p1)),WALL_HEIGHT,WALL_THICKNESS)
+		
 		wall.use_collision = true
 		
 		current_scene.get_node("NavigationRegion3D").add_child(wall)
@@ -55,6 +65,7 @@ func _process(delta):
 		reset_building()
 	
 	if arr[0]:
+		"""
 		var size_x = (mouse_position.x - arr[0].x)
 		var size_z = (mouse_position.z - arr[0].z)
 		
@@ -64,6 +75,22 @@ func _process(delta):
 		else:
 			temp_reference_cube.position = Vector3(arr[0].x,arr[0].y,arr[0].z + size_z / 2)
 			temp_reference_cube.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,abs(size_z))
+		"""
+		
+		var p0 = Vector3(arr[0])
+		var p1 = Vector3(mouse_position)
+		
+		var p0_v2 = Vector2(p0.x, p0.z).normalized()
+		var p1_v2 = Vector2(p1.x, p1.z).normalized()
+		
+		var angle = p0_v2.angle_to(p1_v2)
+		angle = atan2(p1_v2.x, p1_v2.y)
+		
+		temp_reference_cube.rotation.y = (angle)
+		#temp_reference_cube.position = Vector3(p0.x + (p1.x -p0.x) / 2,p0.y,p0.z)
+		temp_reference_cube.position = Vector3(p0.x,p0.y,p0.z)
+		#temp_reference_cube.position = Vector3(p0.x + cos(angle) * (p1.x -p0.x) / 2,p0.y,p0.z + sin(angle) * (p1.z -p0.z) / 2)
+		temp_reference_cube.size = Vector3(abs(p0.distance_to(p1)),WALL_HEIGHT,WALL_THICKNESS)
 		
 		if Input.is_action_just_pressed("right_click"):
 			reset_building()

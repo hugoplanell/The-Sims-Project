@@ -13,7 +13,7 @@ func _ready():
 	reference_mesh.rotation.x = deg_to_rad(90)
 	reference_mesh.polygon = points
 	reference_mesh.depth = GROUND_THICKNESS
-	reference_mesh.position.y = 0.5
+	reference_mesh.position.y = mouse_position.y + 0.53
 	add_child(reference_mesh)
 
 func _exit_tree():
@@ -41,7 +41,7 @@ func build():
 	ground.rotation.x = deg_to_rad(90)
 	ground.polygon = points
 	ground.depth = GROUND_THICKNESS
-	ground.position.y = 0.5
+	ground.position.y = mouse_position.y
 	ground.use_collision = true
 	
 	current_scene.get_node("NavigationRegion3D").add_child(ground)
@@ -61,4 +61,4 @@ func reset_building():
 	#arr.resize(2)
 	print("reset")
 	
-	reference_mesh.polygon = points
+	if reference_mesh != null: reference_mesh.polygon = points

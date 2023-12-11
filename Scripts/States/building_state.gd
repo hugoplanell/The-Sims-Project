@@ -3,7 +3,7 @@ extends State
 
 var arr = [null, null]
 
-var reference_mesh : CSGBox3D
+var reference_mesh : CSGPrimitive3D
 
 var mouse_position : Vector3 = Vector3.ZERO
 

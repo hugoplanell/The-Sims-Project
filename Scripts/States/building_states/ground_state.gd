@@ -1,7 +1,7 @@
 class_name GroundBuilding
 extends BuildingState
 
-const GROUND_THICKNESS = 0.2
+const GROUND_THICKNESS = 0.1
 
 @onready var ground_material = preload("res://Assets/Materials/Debug/debug_ground.tres")
 @onready var current_scene = get_tree().get_current_scene()
@@ -16,7 +16,7 @@ func _process(delta):
 	pass
 	
 func _physics_process(delta):
-	reference_mesh.position = Vector3((mouse_position.x + 0.5), mouse_position.y, (mouse_position.z + 0.5))
+	reference_mesh.position = Vector3((mouse_position.x + 0.5), mouse_position.y + GROUND_THICKNESS / 2, (mouse_position.z + 0.5))
 	
 	if arr[0]:
 		transform_ground(reference_mesh, arr[0], mouse_position)
@@ -52,7 +52,7 @@ func transform_ground(ground, first_pos, last_pos):
 	var size_x = (last_pos.x - first_pos.x)
 	var size_z = (last_pos.z - first_pos.z)
 	
-	ground.position = Vector3(first_pos.x + size_x / 2,first_pos.y,first_pos.z + size_z / 2)
+	ground.position = Vector3(first_pos.x + size_x / 2,first_pos.y + GROUND_THICKNESS / 2,first_pos.z + size_z / 2)
 	ground.size = Vector3(abs(size_x),GROUND_THICKNESS,abs(size_z))
 
 func reset_building():

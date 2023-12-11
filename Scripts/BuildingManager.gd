@@ -27,7 +27,9 @@ func enter():
 	if initial_state_idx != null:
 		current_state_idx = initial_state_idx
 		current_state = states[initial_state_idx].new()
+		#TODO: Move this inside the object ready function
 		$"../../PlayerCamera".connect("mouse_3d", current_state._on_player_camera_mouse_3d)
+		current_state.connect("nav_mesh_changed", get_tree().get_current_scene().get_node("NavigationRegion3D")._on_nav_mesh_changed)
 		add_child(current_state)
 
 func exit():
@@ -67,7 +69,9 @@ func _on_child_transition_by_name(new_state_name):
 	current_state = new_state.new()
 	current_state_idx = states.find(new_state)
 	$"../../PlayerCamera".connect("mouse_3d", current_state._on_player_camera_mouse_3d)
+	current_state.connect("nav_mesh_changed", get_tree().get_current_scene().get_node("NavigationRegion3D")._on_nav_mesh_changed)
 	add_child(current_state)
+	
 
 func _on_child_transition_by_idx(new_state_idx):
 	if new_state_idx == null:
@@ -87,6 +91,7 @@ func _on_child_transition_by_idx(new_state_idx):
 	current_state = new_state.new()
 	current_state_idx = states.find(new_state)
 	$"../../PlayerCamera".connect("mouse_3d", current_state._on_player_camera_mouse_3d)
+	current_state.connect("nav_mesh_changed", get_tree().get_current_scene().get_node("NavigationRegion3D")._on_nav_mesh_changed)
 	add_child(current_state)
 
 func get_state_by_name(name: String):

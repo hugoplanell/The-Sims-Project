@@ -111,4 +111,10 @@ visible = false
 size = Vector3(52.3909, 12.3625, 51.4426)
 data = ExtResource("6_wqs2a")
 
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, -0.352332, 0.991366, -2.18853)
+use_collision = true
+polygon = PackedVector2Array(-6.83608, -2.48193, -4.93443, 3.6691, 1.2166, 5.71162, 4.73818, -0.0168214, 1.35746, -3.91404)
+depth = 0.5
+
 [editable path="Player"]

@@ -10,6 +10,7 @@ const WALL_THICKNESS = 0.2
 
 func _ready():
 	create_box3d_reference(Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS))
+	reference_mesh.material = wall_material
 
 func _exit_tree():
 	reference_mesh.queue_free()

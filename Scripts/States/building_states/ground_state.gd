@@ -8,6 +8,7 @@ const GROUND_THICKNESS = 0.1
 
 func _ready():
 	create_box3d_reference(Vector3(1,GROUND_THICKNESS,1))
+	reference_mesh.material = ground_material
 
 func _exit_tree():
 	reference_mesh.queue_free()

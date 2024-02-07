@@ -14,6 +14,7 @@ func _ready():
 	reference_mesh.polygon = points
 	reference_mesh.depth = GROUND_THICKNESS
 	reference_mesh.position.y = mouse_position.y + 0.53
+	reference_mesh.material = ground_material
 	add_child(reference_mesh)
 
 func _exit_tree():

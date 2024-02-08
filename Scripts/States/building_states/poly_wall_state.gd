@@ -7,6 +7,7 @@ const WALL_THICKNESS = 0.2
 @onready var wall_material = preload("res://Assets/Materials/Debug/debug_wall.tres")
 @onready var current_scene = get_tree().get_current_scene() #mirar mejores formas de hacer esto(valorar un global)
 
+var firstPointPos = null
 
 func _ready():
 	create_box3d_reference(Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS))
@@ -29,6 +30,7 @@ func _on_player_camera_mouse_3d(position, body):
 	if Input.is_action_just_pressed("left_click"):
 		if !arr[0]:
 			arr[0] = mouse_position
+			if firstPointPos == null: firstPointPos = arr[0]
 			print("first-stage")
 		elif !arr[1]:
 			arr[1] = mouse_position
@@ -62,10 +64,13 @@ func build():
 	reset_building()
 
 func reset_building():
-	#arr.clear()
-	#arr.resize(2)
-	arr[0] = arr[1]
-	arr[1] = null
+	if arr[1] == firstPointPos:
+		arr.clear()
+		arr.resize(2)
+		firstPointPos = null
+	else:
+		arr[0] = arr[1]
+		arr[1] = null
 	print("reset")
 	reference_mesh.size = Vector3(WALL_THICKNESS,WALL_HEIGHT,WALL_THICKNESS)
 

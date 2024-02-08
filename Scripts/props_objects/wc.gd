@@ -14,13 +14,18 @@ func _process(delta):
 	super(delta)
 	
 	if character_action == true:
-		if Global.character_node.velocity.length() == 0:
-			var a = Quaternion(Global.character_node.transform.basis)
-			var b = Quaternion(self.transform.basis)
-			#if !is_equal_approx(a,b):
-			Global.character_node.transform.basis = Basis(a.slerp(b,0.1))
-			Global.character_node.playback.start("poop")
-			print("do pooping action")
+		#if Global.character_node.velocity.length() == 0:
+		var a = Quaternion(Global.character_node.transform.basis)
+		var b = Quaternion(self.transform.basis)
+		#if !is_equal_approx(a,b):
+		Global.character_node.transform.basis = Basis(a.slerp(b,0.1))
+		#Global.character_node.get_node("CollisionShape3D").set_deferred("disabled", true)
+		#$"Versailles WC With Seat/Object_3_001/StaticBody3D/CollisionShape3D".set_deferred("disabled", true)
+		#$"Versailles WC With Seat/Object_3_001/StaticBody3D/CollisionShape3D2".set_deferred("disabled", true)
+		#Global.character_node.position = lerp(Global.character_node.position,Vector3(self.global_position.x, self.global_position.y + 1, self.global_position.z), 0.1)
+		Global.character_node.position = Vector3(self.global_position.x, self.global_position.y + 1, self.global_position.z)
+		Global.character_node.playback.start("poop")
+		print("do pooping action")
 	
 	if Input.is_action_just_pressed("left_click"):
 			if is_hovered and is_placed and radial_menu == null:
@@ -42,7 +47,6 @@ func _on_close_lid_button_pressed():
 
 func _on_area_3d_body_entered(body):
 	if body is CharacterBody3D:
-		#body.get_node("CollisionShape3D").disabled = true
 		character_action = true
 
 func create_radial_menu():

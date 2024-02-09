@@ -32,7 +32,7 @@ func physics_update(_delta: float):
 	pass
 
 
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	if Global.character_node != null and active: #mejorar esto
 		if body.is_in_group("walkable"):
 			mouse_target.position = position

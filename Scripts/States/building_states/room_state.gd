@@ -16,7 +16,7 @@ func _ready():
 func _physics_process(delta):
 	pass
 	
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	mouse_position = floor(position + Vector3(0.5,2,0.5))
 	
 	if firstClick:

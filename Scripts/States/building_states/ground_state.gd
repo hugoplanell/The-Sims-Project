@@ -23,7 +23,7 @@ func _physics_process(delta):
 		transform_ground(reference_mesh, arr[0], mouse_position)
 
 
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	if Input.is_action_just_pressed("left_click"):
 		if arr[0] == null:
 			arr[0] = mouse_position

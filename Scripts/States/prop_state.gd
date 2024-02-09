@@ -33,7 +33,7 @@ func _process(delta):
 func _physics_process(delta):
 	pass
 
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	if Input.is_action_just_pressed("left_click"):
 		prop = prop_reference.duplicate()
 		#current_prop_reference.queue_free()

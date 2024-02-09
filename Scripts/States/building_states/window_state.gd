@@ -23,19 +23,18 @@ func _process(delta):
 func _physics_process(delta):
 	pass
 
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	if Input.is_action_just_pressed("left_click"):
 		prop = prop_reference.duplicate()
-		#current_prop_reference.queue_free()
 		prop.is_placed = true
-		prop.global_position = mouse_position - body.global_position #revisar esto
-		body.add_child(prop)
-		print(body)
-		nav_mesh_changed.emit()
 		
-		#current_prop_reference = prop_library_resource.scenes[current_prop_idx].instantiate()
-		#add_child(current_prop_reference)
+		body.add_child(prop)
+		
+		prop.global_position = mouse_position
+		prop.position.z = 0 # temporal
+		
+		nav_mesh_changed.emit()
 	
 	#mouse_position = floor(position + Vector3(0.5,1,0.5))
-	mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))
-
+	mouse_position = position
+	#mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))

@@ -5,7 +5,7 @@ var mouse_speed : Vector2
 var camera_panning = false
 @export var panning_speed:float = 1.0
 
-signal mouse_3d(position, body)
+signal mouse_3d(position, body, normal)
 
 func _process(delta):
 	#reset mouse_speed when mouse is not moving
@@ -49,6 +49,6 @@ func mouse_raycast():
 	var intersection = space_state.intersect_ray(raycast)
 	
 	if !intersection.is_empty():
-		mouse_3d.emit(intersection.position, intersection.collider)
+		mouse_3d.emit(intersection.position, intersection.collider, intersection.normal)
 
 

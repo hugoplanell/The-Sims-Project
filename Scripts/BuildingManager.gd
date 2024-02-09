@@ -102,7 +102,7 @@ func get_state_by_name(name: String):
 			return state
 		state_node.queue_free()
 
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	if active:
 		if current_building_mode == BuildingMode.REMOVE:
 			if body is BuildingObject3D:

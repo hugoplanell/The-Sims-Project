@@ -27,7 +27,7 @@ func _process(delta):
 func _physics_process(delta):
 	pass
 
-func _on_player_camera_mouse_3d(position, body):
+func _on_player_camera_mouse_3d(position, body, normal):
 	mouse_position = Vector3(floor(position.x + 0.5), position.y, floor(position.z + 0.5))
 	
 	if Input.is_action_just_pressed("left_click"):

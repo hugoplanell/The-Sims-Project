@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://cgvfbrb765upy"]
 
-[ext_resource type="Script" path="res://Scripts/building_objects/window.gd" id="2_dwj1u"]
+[ext_resource type="Script" path="res://Scripts/props_objects/window.gd" id="1_0homj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xouei"]
 
@@ -105,7 +105,7 @@ shadow_mesh = SubResource("ArrayMesh_tondk")
 transparency = 1.0
 operation = 2
 size = Vector3(0.693359, 0.862732, 1)
-script = ExtResource("2_dwj1u")
+script = ExtResource("1_0homj")
 
 [node name="Cube" type="MeshInstance3D" parent="."]
 mesh = SubResource("ArrayMesh_kt0yl")

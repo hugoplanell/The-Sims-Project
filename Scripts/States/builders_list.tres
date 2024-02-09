@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://Scripts/States/prop_states/wc_state.gd" id="3_riysy"]
 [ext_resource type="Script" path="res://Scripts/States/prop_states/table_state.gd" id="4_nokvs"]
 [ext_resource type="Script" path="res://Scripts/States/building_states/room_state.gd" id="5_xr4ip"]
-[ext_resource type="Script" path="res://Scripts/States/building_states/window_state.gd" id="8_xhsea"]
+[ext_resource type="Script" path="res://Scripts/States/prop_states/window_state.gd" id="8_xhsea"]
 
 [resource]
 script = ExtResource("1_7rcuj")
